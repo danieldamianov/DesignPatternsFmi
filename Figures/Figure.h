@@ -11,6 +11,7 @@ protected:
 	//TEST FOR MEMORY LEAK
 	//TODO DELETE!!!! THIS SHIT
  	//mutable int* a;
+	// TODO :: CHECK FOR NERAVENSTVO NA TRIAGALNIKA
 
 	std::vector<double> parameters;
 

@@ -14,7 +14,7 @@ Figure* StreamFigureFactory::createFigure()
 
     if (figureType == "circle")
     {
-        int radius;
+        double radius;
 
         this->stream >> radius;
 
@@ -22,17 +22,17 @@ Figure* StreamFigureFactory::createFigure()
     }
     else if (figureType == "rectangle")
     {
-        int a;
-        int b;
+        double a;
+        double b;
 
         this->stream >> a >> b;
         figure = new Rectangle(a, b);
     }
     else if (figureType == "triangle")
     {
-        int x;
-        int y;
-        int z;
+        double x;
+        double y;
+        double z;
 
         this->stream >> x >> y >> z;
         figure = new Triangle(x, y, z);

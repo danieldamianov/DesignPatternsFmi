@@ -8,7 +8,7 @@
 // options for initializing the figures:
 // 1 option:STDIN
 // 2 option:FILE {fileName}
-// 3 option:RANDOM {numberOfFigures}
+// 3 option:RANDOM
 
 std::ifstream* FigureFactorySupplier::fileStream = nullptr;
 
@@ -53,6 +53,8 @@ void FigureFactorySupplier::recycleFactory(IFigureFactory* factory)
         fileStream->close();
         delete fileStream;
     }
+
+    fileStream = nullptr;
 
     delete factory;
 }
