@@ -130,14 +130,14 @@ int main()
 		{
 			IFigureFactory* factory = nullptr;
 
-			std::string input[3]{ "RANDOM", "FILE figures.txt", "STDIN" };
+			std::string input[2]{ "RANDOM", "FILE figures.txt"};
 
 			int numberOfFigures = 5;
 
 			std::vector<Figure*> figuresOriginals;
 			std::vector<std::unique_ptr<Figure>> figureClones;
 
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 2; i++)
 			{
 				try
 				{
@@ -169,7 +169,7 @@ int main()
 
 			}
 
-			for (int i = 0; i < 15; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				std::cout << figureClones[i]->toString() << std::endl;
 			}

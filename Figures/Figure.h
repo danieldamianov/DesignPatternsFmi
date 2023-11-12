@@ -10,10 +10,15 @@ protected:
 
 	//TEST FOR MEMORY LEAK
 	//TODO DELETE!!!! THIS SHIT
- 	//mutable int* a;
+ 	mutable int* a;
 	// TODO :: CHECK FOR NERAVENSTVO NA TRIAGALNIKA
 
 	std::vector<double> parameters;
+
+	Figure()
+	{
+		(*this).a = new int[10000];
+	}
 
 public:
 	virtual double getPerimeter() const = 0;
@@ -22,6 +27,9 @@ public:
 
 	virtual std::string toString() const;
 
-	virtual ~Figure() { /*delete[]a;*/ }
+	virtual ~Figure() 
+	{
+		delete[]a;
+	}
 };
 
