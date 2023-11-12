@@ -39,7 +39,7 @@ Figure* StreamFigureFactory::createFigure()
     }
     else // THINK AGAIN IF THIS IS THE PROPER INPLEMENTATION!
     {
-        throw new InvalidFigureTypeException("Stream provided an invalid figure type!");
+        throw InvalidFigureTypeException("Stream provided an invalid figure type!");
     }
 
     return figure;

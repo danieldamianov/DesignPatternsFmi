@@ -3,8 +3,14 @@
 
 class RandomFigureFactory : public IFigureFactory
 {
-	virtual Figure* createFigure() override;
+private:
+	static const int minSizeOfParameters;
+	static const int maxSizeOfParameters;
 
     int getRandomNumberFromOneToLimit(int limit);
+public:
+
+	virtual Figure* createFigure() override;
+
 };
 

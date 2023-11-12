@@ -2,6 +2,8 @@
 
 std::string Figure::toString() const
 {
+	// TODO:: DELETE!
+	//(*this).a = new int[10000];
 	std::string result;
 
 	result += this->representativeName;
@@ -9,7 +11,7 @@ std::string Figure::toString() const
 	for (int i = 0; i < this->parameters.size(); i++)
 	{
 		result += " ";
-		result += this->parameters[i];
+		result += std::to_string(this->parameters[i]);
 	}
 
 	return result;

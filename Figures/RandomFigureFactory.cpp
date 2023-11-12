@@ -4,6 +4,10 @@
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Triangle.h"
+#include <random>
+
+const int RandomFigureFactory::minSizeOfParameters = 1;
+const int RandomFigureFactory::maxSizeOfParameters = 100;
 
 Figure* RandomFigureFactory::createFigure()
 {
@@ -16,26 +20,26 @@ Figure* RandomFigureFactory::createFigure()
     {
         // Circle
     case 1:
-        p1 = getRandomNumberFromOneToLimit(100);
+        p1 = getRandomNumberFromOneToLimit(maxSizeOfParameters);
         figure = new Circle(p1);
         break;
         // Triangle
     case 2:
-        p1 = getRandomNumberFromOneToLimit(100);
-        p2 = getRandomNumberFromOneToLimit(100);
-        p3 = getRandomNumberFromOneToLimit(100);
+        p1 = getRandomNumberFromOneToLimit(maxSizeOfParameters);
+        p2 = getRandomNumberFromOneToLimit(maxSizeOfParameters);
+        p3 = getRandomNumberFromOneToLimit(maxSizeOfParameters);
         figure = new Triangle(p1, p2, p3);
         break;
         //Rectangle
     case 3:
-        p1 = getRandomNumberFromOneToLimit(100);
-        p2 = getRandomNumberFromOneToLimit(100);
+        p1 = getRandomNumberFromOneToLimit(maxSizeOfParameters);
+        p2 = getRandomNumberFromOneToLimit(maxSizeOfParameters);
         figure = new Rectangle(p1, p2);
         break;
 
         // This code should never be reached!
     default:
-        throw new InvalidRandomNumberException("Logical error in random generator.");
+        throw InvalidRandomNumberException("Logical error in random generator.");
     }
 
     return figure;
@@ -43,7 +47,12 @@ Figure* RandomFigureFactory::createFigure()
 
 int RandomFigureFactory::getRandomNumberFromOneToLimit(int limit) {
 
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist(minSizeOfParameters, limit);
 
-    return rand() % limit + 1;
+    return dist(rng);
+    //std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    //return rand() % limit + 1;
 }

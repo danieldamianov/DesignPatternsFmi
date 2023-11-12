@@ -8,6 +8,10 @@ class Figure
 protected:
 	std::string representativeName;
 
+	//TEST FOR MEMORY LEAK
+	//TODO DELETE!!!! THIS SHIT
+ 	//mutable int* a;
+
 	std::vector<double> parameters;
 
 public:
@@ -17,6 +21,6 @@ public:
 
 	virtual std::string toString() const;
 
-	virtual ~Figure() { }
+	virtual ~Figure() { /*delete[]a;*/ }
 };
 
