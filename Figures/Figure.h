@@ -8,17 +8,11 @@ class Figure
 protected:
 	std::string representativeName;
 
-	//TEST FOR MEMORY LEAK
-	//TODO DELETE!!!! THIS SHIT
- 	mutable int* a;
 	// TODO :: CHECK FOR NERAVENSTVO NA TRIAGALNIKA
 
 	std::vector<double> parameters;
 
-	Figure()
-	{
-		(*this).a = new int[10000];
-	}
+	Figure() { }
 
 	void sortParameters();
 
@@ -29,10 +23,7 @@ public:
 
 	virtual std::string toString() const;
 
-	virtual ~Figure() 
-	{
-		delete[]a;
-	}
+	virtual ~Figure() { }
 
 	std::string getRepresentativeName() const;
 

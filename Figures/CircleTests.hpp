@@ -55,7 +55,6 @@ TEST_CASE("Test equal function")
 	delete factory3;
 }
 
-
 #endif
 
 //#define AllLists ForwardList<int>, List<int>
