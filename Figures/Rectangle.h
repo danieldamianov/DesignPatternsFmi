@@ -10,6 +10,7 @@ public:
 		this->representativeName = "rectangle";
 		this->parameters.push_back(x);
 		this->parameters.push_back(y);
+		sortParameters();
 	}
 
 	virtual double getPerimeter() const override;

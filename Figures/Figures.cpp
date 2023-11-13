@@ -5,7 +5,12 @@
 #include <string>
 #include <vector>
 #include "FigureFactorySupplier.h"
+#include <iostream>
 
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest.h"
+
+#include "CircleTests.hpp"
 // TODO:: CHECK FOR ENCAPSULATION OF PRIVATE MEMBERS THE WHOLE PROGRAM
 // TODO:: CHECK FOR EXCEPTION SAFETY THE ENTIRE PROGRAM!!!!
 
@@ -122,58 +127,61 @@ void initializeFile()
 	stream.close();
 }
 
-int main()
-{
-		initializeFile();
-
-		while (true)
-		{
-			IFigureFactory* factory = nullptr;
-
-			std::string input[2]{ "RANDOM", "FILE figures.txt"};
-
-			int numberOfFigures = 5;
-
-			std::vector<Figure*> figuresOriginals;
-			std::vector<std::unique_ptr<Figure>> figureClones;
-
-			for (int i = 0; i < 2; i++)
-			{
-				try
-				{
-					factory = FigureFactorySupplier::getFactory(input[i]);
-
-					for (int j = 5 * i; j < 5 * i + 5; j++)
-					{
-						figuresOriginals.push_back(factory->createFigure());
-					}
-
-					for (int j = 5 * i; j < 5 * i + 5; j++)
-					{
-						figureClones.push_back(figuresOriginals[j]->clone());
-					}
-
-					for (int j = 5 * i; j < 5 * i + 5; j++)
-					{
-						factory->recycleFigure(figuresOriginals[j]);
-					}
-
-					FigureFactorySupplier::recycleFactory(factory);
-				}
-				// TODO: THINK THIS AGAIN
-				catch (const std::exception& ex)
-				{
-					FigureFactorySupplier::recycleFactory(factory);
-					throw ex;
-				}
-
-			}
-
-			for (int i = 0; i < 10; i++)
-			{
-				std::cout << figureClones[i]->toString() << std::endl;
-			}
-		}
-		
-
-}
+//int main()
+//{
+//		initializeFile();
+//
+//		while (true)
+//		{
+//			IFigureFactory* factory = nullptr;
+//
+//			std::string input[2]{ "RANDOM", "FILE figures.txt"};
+//
+//			int numberOfFigures = 5;
+//
+//			std::vector<Figure*> figuresOriginals;
+//			std::vector<std::unique_ptr<Figure>> figureClones;
+//
+//			for (int i = 0; i < 2; i++)
+//			{
+//				try
+//				{
+//					factory = FigureFactorySupplier::getFactory(input[i]);
+//
+//					for (int j = 5 * i; j < 5 * i + 5; j++)
+//					{
+//						figuresOriginals.push_back(factory->createFigure());
+//					}
+//
+//					for (int j = 5 * i; j < 5 * i + 5; j++)
+//					{
+//						figureClones.push_back(figuresOriginals[j]->clone());
+//					}
+//
+//					for (int j = 5 * i; j < 5 * i + 5; j++)
+//					{
+//						factory->recycleFigure(figuresOriginals[j]);
+//					}
+//					// TODO:: да видя дали файстриимовете течат!!!
+//					// TODO:: да пробвам дали с конзолата тече!!!
+//					// TODO :: да имам обяснение защо от факторито връщам обикновени пойнтъри а от клоуна-смарт
+//					// и различните случаи кога е по-добре
+//					FigureFactorySupplier::recycleFactory(factory);
+//				}
+//				// TODO: THINK THIS AGAIN
+//				catch (const std::exception& ex)
+//				{
+//					FigureFactorySupplier::recycleFactory(factory);
+//					throw ex;
+//				}
+//
+//			}
+//
+//			for (int i = 0; i < 10; i++)
+//			{
+//				std::cout << figureClones[i]->toString() << std::endl;
+//			}
+//		}
+//		
+//
+//}

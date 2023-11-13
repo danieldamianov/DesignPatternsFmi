@@ -20,6 +20,8 @@ protected:
 		(*this).a = new int[10000];
 	}
 
+	void sortParameters();
+
 public:
 	virtual double getPerimeter() const = 0;
 
@@ -31,5 +33,12 @@ public:
 	{
 		delete[]a;
 	}
+
+	std::string getRepresentativeName() const;
+
+	bool equals(const Figure& other) const;
+
+	static bool checkDoublesForEquality(double d1, double d2);
+
 };
 

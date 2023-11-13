@@ -13,6 +13,7 @@ public:
 	{
 		this->representativeName = "circle";
 		this->parameters.push_back(radius);
+		sortParameters();
 	}
 
 	virtual double getPerimeter() const override;

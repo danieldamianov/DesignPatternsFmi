@@ -12,6 +12,7 @@ public:
 		this->parameters.push_back(a);
 		this->parameters.push_back(b);
 		this->parameters.push_back(c);
+		sortParameters();
 	}
 
 	virtual double getPerimeter() const override;

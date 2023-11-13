@@ -86,5 +86,8 @@
     <ClInclude Include="StringFigureFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CircleTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
