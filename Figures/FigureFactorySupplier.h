@@ -11,7 +11,7 @@ private:
 
 public:
 
-	static IFigureFactory* getFactory(std::string input, std::string& typeReturned);
+	static IFigureFactory* getFactory(std::string input);
 
 	static void recycleFactory(IFigureFactory* factory);
 };

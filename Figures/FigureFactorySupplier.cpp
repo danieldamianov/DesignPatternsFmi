@@ -14,7 +14,7 @@ std::ifstream* FigureFactorySupplier::fileStream = nullptr;
 
 // if the input option is Invalid, nullptr will be returned!!!
 // TODO:: CHeck for this!!!
-IFigureFactory* FigureFactorySupplier::getFactory(std::string input, std::string &typeReturned)
+IFigureFactory* FigureFactorySupplier::getFactory(std::string input)
 {
     IFigureFactory* result = nullptr;
 

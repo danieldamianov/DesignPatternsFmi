@@ -24,38 +24,58 @@
 
 int main()
 {
-	IFigureFactory* factory = nullptr;
-
-	int numberOfFigures;
-	std::cout << "Enter number of figures: ";
-	std::cin >> numberOfFigures;
-
-	std::vector<Figure*> figures;
-
-	for (int i = 0; i < 2; i++)
+	// TODO:: fix this!
+	while (true)
 	{
+		IFigureFactory* factory = nullptr;
+
+		int numberOfFigures;
+		std::cout << "Enter number of figures: ";
+		std::cin >> numberOfFigures;
+		std::cin.get();
+
+		std::vector<Figure*> figures;
+
+		std::cout << "Enter way of entering figures:" << std::endl;
+		std::cout << "Options: " << std::endl;
+		std::cout << "STDIN" << std::endl;
+		std::cout << "FILE {fileName}" << std::endl;
+		std::cout << "RANDOM" << std::endl;
+		std::cout << "STOP - exits the program" << std::endl;
+
+		std::string input;
+		std::getline(std::cin, input);
+
+		if (input == "STOP")
+		{
+			break;
+		}
+
+		std::cout << "If you entered STDIN, enter the number of figures that ypu specified in the format:" << std::endl;
+		std::cout << "{figure type} {p1} {p2} {p3}, where p2 and p3 are optional" << std::endl;
+
 		try
 		{
-			factory = FigureFactorySupplier::getFactory(input[i]);
+			// TODO :: FILE input doesn't work!!
+			factory = FigureFactorySupplier::getFactory(input);
 
-			for (int j = 5 * i; j < 5 * i + 5; j++)
+			for (int i = 0; i < numberOfFigures; i++)
 			{
-				figuresOriginals.push_back(factory->createFigure());
+				figures.push_back(factory->createFigure());
 			}
 
-			for (int j = 5 * i; j < 5 * i + 5; j++)
+			for (int i = 0; i < numberOfFigures; i++)
 			{
-				figureClones.push_back(figuresOriginals[j]->clone());
+				std::cout << figures[i]->toString() << std::endl;
 			}
 
-			for (int j = 5 * i; j < 5 * i + 5; j++)
+			// TODO :: LOCGIC FOR HANDLING FIGURES
+
+			for (int i = 0; i < numberOfFigures; i++)
 			{
-				factory->recycleFigure(figuresOriginals[j]);
+				factory->recycleFigure(figures[i]);
 			}
-			// TODO:: да видя дали файстриимовете течат!!!
-			// TODO:: да пробвам дали с конзолата тече!!!
-			// TODO :: да имам обяснение защо от факторито връщам обикновени пойнтъри а от клоуна-смарт
-			// и различните случаи кога е по-добре
+
 			FigureFactorySupplier::recycleFactory(factory);
 		}
 		// TODO: THINK THIS AGAIN
@@ -64,16 +84,10 @@ int main()
 			FigureFactorySupplier::recycleFactory(factory);
 			throw ex;
 		}
-
-	}
-
-	for (int i = 0; i < 10; i++)
-	{
-		std::cout << figureClones[i]->toString() << std::endl;
 	}
 }
 
- 
+
 //int main()
 //{
 //	std::string input[2]{ "RANDOM", "FILE figures.txt" };

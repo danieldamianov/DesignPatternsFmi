@@ -9,6 +9,10 @@
 const int RandomFigureFactory::minSizeOfParameters = 1;
 const int RandomFigureFactory::maxSizeOfParameters = 100;
 
+// TODO :: Write Unit tests testing this method.
+// The best way i can think of it is by mocking the random functonality
+// This, however, requires altering the class so that it accepts a function pointer for the random function
+// The idea between this is to test the method and not the random function, which is from the STD.
 Figure* RandomFigureFactory::createFigure()
 {
     Figure* figure = nullptr;
