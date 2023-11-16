@@ -43,6 +43,7 @@ Figure* RandomFigureFactory::createFigure()
 
         // This code should never be reached!
     default:
+        assert(false);
         throw InvalidRandomNumberException("Logical error in random generator.");
     }
 

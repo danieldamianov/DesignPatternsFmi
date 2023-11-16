@@ -79,10 +79,10 @@ int main()
 			FigureFactorySupplier::recycleFactory(factory);
 		}
 		// TODO: THINK THIS AGAIN
-		catch (const std::exception& ex)
+		catch (...)
 		{
 			FigureFactorySupplier::recycleFactory(factory);
-			throw ex;
+			throw;
 		}
 	}
 }
