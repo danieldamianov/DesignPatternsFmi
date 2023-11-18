@@ -35,11 +35,8 @@ IFigureFactory* FigureFactorySupplier::getFactory(std::string input)
 	else if (option == "FILE")
 	{
 		std::string fileName = getFileName(input);
-
-		// This will be closed in the recycle factory method!
-		std::unique_ptr<std::ifstream> fileStream = std::make_unique<std::ifstream>(new std::ifstream(fileName));
-
-		result = new StreamFigureFactory(std::move(fileStream));
+		std::unique_ptr<std::ifstream> ptr = std::make_unique<std::ifstream>(fileName);
+		result = new StreamFigureFactory(std::move(ptr));
 	}
 	else if (option == "RANDOM")
 	{
@@ -66,13 +63,13 @@ std::string FigureFactorySupplier::getFileName(std::string input)
 // TODO:: This should ALWAYS BE CALLED
 void FigureFactorySupplier::recycleFactory(IFigureFactory* factory)
 {
-	if (fileStream != nullptr)
-	{
-		fileStream->close();
-		delete fileStream;
-	}
+	//if (fileStream != nullptr)
+	//{
+	//	fileStream->close();
+	//	delete fileStream;
+	//}
 
-	fileStream = nullptr;
+	//fileStream = nullptr;
 
 	delete factory;
 }
