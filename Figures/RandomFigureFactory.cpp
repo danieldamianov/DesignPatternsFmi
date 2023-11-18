@@ -5,6 +5,7 @@
 #include "Rectangle.h"
 #include "Triangle.h"
 #include <random>
+#include "cassert"
 
 const int RandomFigureFactory::minSizeOfParameters = 1;
 const int RandomFigureFactory::maxSizeOfParameters = 100;

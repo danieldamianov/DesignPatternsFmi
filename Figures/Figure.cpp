@@ -1,10 +1,19 @@
 #include "Figure.h"
+#include "NonPositiveParameterException.h"
 #include <algorithm>
 #include <cmath>
 
 void Figure::sortParameters()
 {
 	std::sort(parameters.begin(), parameters.end());
+}
+
+void Figure::ensureParameterIsPositive(double number, std::string parameter) const
+{
+	if (number <= 0)
+	{
+		throw NonPositiveParameterException("Parameter " + parameter + " is non negative!");
+	}
 }
 
 std::string Figure::toString() const

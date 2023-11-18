@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <memory>
 #include "StreamFigureFactory.h"
 #include "RandomFigureFactory.h"
 
@@ -10,53 +11,70 @@
 // 2 option:FILE {fileName}
 // 3 option:RANDOM
 
-std::ifstream* FigureFactorySupplier::fileStream = nullptr;
+//std::ifstream* FigureFactorySupplier::fileStream = nullptr;
 
 // if the input option is Invalid, nullptr will be returned!!!
 // TODO:: CHeck for this!!!
 IFigureFactory* FigureFactorySupplier::getFactory(std::string input)
 {
-    IFigureFactory* result = nullptr;
+	// TODO ADD THIS VALIDATION TOO!!!!
+	/*if (validInput(input) == false)
+	{
+		return nullptr;
+	}*/
 
-    std::istringstream inputStream(input);
-    std::string option;
-    inputStream >> option;
+	IFigureFactory* result = nullptr;
 
-    // THINK ABOUT WHO SHOULD CLOSE THE FILE IN THE NEXT OPTIONS!!!
-    if (option == "STDIN")
-    {
-        result = new StreamFigureFactory(std::cin);
-    }
-    else if (option == "FILE")
-    {
-        std::string fileName;
-        inputStream >> fileName;
+	std::string option = getOption(input);
 
-        // This will be closed in the recycle factory method!
-        fileStream = new std::ifstream(fileName);
+	// THINK ABOUT WHO SHOULD CLOSE THE FILE IN THE NEXT OPTIONS!!!
+	if (option == "STDIN")
+	{
+		result = new StreamFigureFactory(std::cin);
+	}
+	else if (option == "FILE")
+	{
+		std::string fileName = getFileName(input);
 
-        result = new StreamFigureFactory(*fileStream);
-    } 
-    else if (option == "RANDOM")
-    {
-        result = new RandomFigureFactory();
-    }
+		// This will be closed in the recycle factory method!
+		std::unique_ptr<std::ifstream> fileStream = std::make_unique<std::ifstream>(new std::ifstream(fileName));
 
-    return result;
+		result = new StreamFigureFactory(std::move(fileStream));
+	}
+	else if (option == "RANDOM")
+	{
+		result = new RandomFigureFactory();
+	}
+
+	return result;
+}
+
+std::string FigureFactorySupplier::getOption(std::string input)
+{
+	size_t spacePos = input.find(' ');
+	return (spacePos != std::string::npos) ? input.substr(0, spacePos) : input;
+}
+
+std::string FigureFactorySupplier::getFileName(std::string input)
+{
+	size_t spacePos = input.find(' ');
+	std::string secondHalf = input.substr(spacePos + 1);
+
+	return secondHalf;
 }
 
 // TODO:: This should ALWAYS BE CALLED
 void FigureFactorySupplier::recycleFactory(IFigureFactory* factory)
 {
-    if (fileStream != nullptr)
-    {
-        fileStream->close();
-        delete fileStream;
-    }
+	if (fileStream != nullptr)
+	{
+		fileStream->close();
+		delete fileStream;
+	}
 
-    fileStream = nullptr;
+	fileStream = nullptr;
 
-    delete factory;
+	delete factory;
 }
 
 

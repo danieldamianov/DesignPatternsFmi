@@ -154,6 +154,7 @@
     <ClCompile Include="StreamFigureFactory.cpp" />
     <ClCompile Include="StringFigureFactory.cpp" />
     <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="TriangleInequalityException.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
@@ -163,12 +164,13 @@
     <ClInclude Include="IFigureFactory.h" />
     <ClInclude Include="InvalidFigureTypeException.h" />
     <ClInclude Include="InvalidRandomNumberException.h" />
-    <ClInclude Include="NegativeParameterException.h" />
+    <ClInclude Include="NonPositiveParameterException.h" />
     <ClInclude Include="RandomFigureFactory.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="StreamFigureFactory.h" />
     <ClInclude Include="StringFigureFactory.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="TriangleInequalityException.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Questions.txt" />

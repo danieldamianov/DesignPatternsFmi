@@ -8,13 +8,14 @@ class Figure
 protected:
 	std::string representativeName;
 
-	// TODO :: CHECK FOR NERAVENSTVO NA TRIAGALNIKA
-
 	std::vector<double> parameters;
-
+	
+	// TODO :: This may throw some validation exceptions! Chekc for them in the consumer code!;
 	Figure() { }
 
 	void sortParameters();
+
+	void ensureParameterIsPositive(double number, std::string parameter) const;
 
 public:
 	virtual double getPerimeter() const = 0;
