@@ -20,8 +20,11 @@
 // 3 option:RANDOM
 
 void initializeFile();
-/*int main()
+
+int main()
 {
+	//initializeFile();
+
 	FigureFactorySupplier figureFactorySupplier;
 
 	while (true)
@@ -93,114 +96,6 @@ void initializeFile();
 		}
 
 	}
-}*/
-
-
-int main()
-{
-	FigureFactorySupplier figureFactorySupplier;
-
-	while (true)
-	{
-		std::string input[2]{ "RANDOM", "FILE figures.txt" };
-
-		int numberOfFigures = 15;
-
-		for (int i = 0; i < 2; i++)
-		{
-			std::vector<std::unique_ptr<Figure> > figures;
-			std::unique_ptr<IFigureFactory> factory = figureFactorySupplier.getFactory(input[i]);
-
-			for (int i = 0; i < numberOfFigures; i++)
-			{
-
-				try
-				{
-					std::unique_ptr<Figure> figure = factory->createFigure();
-
-					if (figure == nullptr)
-					{
-						std::cout << "Could't read figure, because the input was not in the correct format!" << std::endl;
-						std::cout << "If you entered the figure from the standart input, know that the figure is not added!" << std::endl;
-						std::cout << "If you chose to read the figures from a file, check the content of the file and know that the figure is not added!" << std::endl;
-					}
-					else
-					{
-						figures.push_back(std::move(figure));
-					}
-
-				}
-				catch (const NonPositiveParameterException& ex)
-				{
-					std::cout << "Invalid figure parameters!" << std::endl;
-					std::cout << "Figure was not added!" << std::endl;
-					std::cout << ex.what() << std::endl;
-
-				}
-				catch (const TriangleInequalityException& ex)
-				{
-					std::cout << "Invalid triangle inequality exception!" << std::endl;
-					std::cout << "Triangle was not added!" << std::endl;
-					std::cout << ex.what() << std::endl;
-				}
-			}
-
-			for (int i = 0; i < figures.size(); i++)
-			{
-				std::cout << figures[i]->toString() << std::endl;
-			}
-		}
-
-	}
-
-
-	//std::string input[2]{ "RANDOM", "FILE figures.txt" };
-
-	//IFigureFactory* factory = nullptr;
-	//const int numberOfFigures = 5;
-
-	//std::vector<Figure*> figuresOriginals;
-	//std::vector<std::unique_ptr<Figure>> figureClones;
-
-	//for (int i = 0; i < 2; i++)
-	//{
-	//	try
-	//	{
-	//		factory = FigureFactorySupplier::getFactory(input[i]);
-
-	//		for (int j = numberOfFigures * i; j < numberOfFigures * i + numberOfFigures; j++)
-	//		{
-	//			figuresOriginals.push_back(factory->createFigure());
-	//		}
-
-	//		for (int j = numberOfFigures * i; j < numberOfFigures * i + numberOfFigures; j++)
-	//		{
-	//			figureClones.push_back(figuresOriginals[j]->clone());
-	//		}
-
-	//		for (int j = numberOfFigures * i; j < numberOfFigures * i + numberOfFigures; j++)
-	//		{
-	//			factory->recycleFigure(figuresOriginals[j]);
-	//		}
-	//		// TODO:: да видя дали файстриимовете течат!!!
-	//		// TODO:: да пробвам дали с конзолата тече!!!
-	//		// TODO :: да имам обяснение защо от факторито връщам обикновени пойнтъри а от клоуна-смарт
-	//		// и различните случаи кога е по-добре
-	//		FigureFactorySupplier::recycleFactory(factory);
-	//	}
-	//	// TODO: THINK THIS AGAIN
-	//	catch (const std::exception& ex)
-	//	{
-	//		FigureFactorySupplier::recycleFactory(factory);
-	//		throw ex;
-	//	}
-
-	//}
-
-	//for (int i = 0; i < 2 * numberOfFigures; i++)
-	//{
-	//	std::cout << figureClones[i]->toString() << std::endl;
-	//}
 }
 
 void initializeFile()
