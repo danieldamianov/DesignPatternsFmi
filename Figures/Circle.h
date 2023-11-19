@@ -8,12 +8,11 @@ class Circle : public Figure
 private:
 	static const double PI;
 
-	
-
 public:
 	Circle(double radius)
 	{
 		this->representativeName = "circle";
+
 		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(radius, "radius");
 

@@ -11,39 +11,27 @@
 // 2 option:FILE {fileName}
 // 3 option:RANDOM
 
-//std::ifstream* FigureFactorySupplier::fileStream = nullptr;
-
-// if the input option is Invalid, nullptr will be returned!!!
-// TODO:: CHeck for this!!!
-IFigureFactory* FigureFactorySupplier::getFactory(std::string input)
+std::unique_ptr<IFigureFactory> FigureFactorySupplier::getFactory(std::string input)
 {
-	// TODO ADD THIS VALIDATION TOO!!!!
-	/*if (validInput(input) == false)
-	{
-		return nullptr;
-	}*/
-
-	IFigureFactory* result = nullptr;
-
 	std::string option = getOption(input);
 
-	// THINK ABOUT WHO SHOULD CLOSE THE FILE IN THE NEXT OPTIONS!!!
 	if (option == "STDIN")
 	{
-		result = new StreamFigureFactory(std::cin);
+		return std::make_unique<StreamFigureFactory>(std::cin);
 	}
 	else if (option == "FILE")
 	{
 		std::string fileName = getFileName(input);
 		std::unique_ptr<std::ifstream> ptr = std::make_unique<std::ifstream>(fileName);
-		result = new StreamFigureFactory(std::move(ptr));
+		
+		return std::make_unique<StreamFigureFactory>((std::move(ptr)));
 	}
 	else if (option == "RANDOM")
 	{
-		result = new RandomFigureFactory();
+		return std::make_unique<RandomFigureFactory>();
 	}
 
-	return result;
+	return nullptr;
 }
 
 std::string FigureFactorySupplier::getOption(std::string input)
@@ -59,19 +47,4 @@ std::string FigureFactorySupplier::getFileName(std::string input)
 
 	return secondHalf;
 }
-
-// TODO:: This should ALWAYS BE CALLED
-void FigureFactorySupplier::recycleFactory(IFigureFactory* factory)
-{
-	//if (fileStream != nullptr)
-	//{
-	//	fileStream->close();
-	//	delete fileStream;
-	//}
-
-	//fileStream = nullptr;
-
-	delete factory;
-}
-
 

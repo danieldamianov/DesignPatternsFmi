@@ -13,25 +13,19 @@
 //#include "doctest.h"
 
 //#include "CircleTests.hpp"
-// 
-// TODO:: CHECK FOR ENCAPSULATION OF PRIVATE MEMBERS THE WHOLE PROGRAM
-// TODO:: CHECK FOR EXCEPTION SAFETY THE ENTIRE PROGRAM!!!!
 
 // options for initializing the figures:
 // 1 option:STDIN
 // 2 option:FILE {fileName}
 // 3 option:RANDOM
 
-//void initializeFile();
 void initializeFile();
 int main()
 {
-	// TODO:: fix this!
+	FigureFactorySupplier figureFactorySupplier;
+
 	while (true)
 	{
-
-		IFigureFactory* factory = nullptr;
-
 		int numberOfFigures;
 		std::cout << "Enter number of figures: ";
 		std::cin >> numberOfFigures;
@@ -57,66 +51,53 @@ int main()
 		std::cout << "If you entered STDIN, enter the number of figures that ypu specified in the format:" << std::endl;
 		std::cout << "{figure type} {p1} {p2} {p3}, where p2 and p3 are optional" << std::endl;
 
-		try
+		std::unique_ptr<IFigureFactory> factory = figureFactorySupplier.getFactory(input);
+
+		for (int i = 0; i < numberOfFigures; i++)
 		{
-			factory = FigureFactorySupplier::getFactory(input);
+			Figure* figure = nullptr;
 
-			for (int i = 0; i < numberOfFigures; i++)
+			try
 			{
-				Figure* figure = nullptr;
+				figure = factory->createFigure();
 
-				try
+				if (figure == nullptr)
 				{
-					figure = factory->createFigure();
-
-					if (figure == nullptr)
-					{
-						std::cout << "Could't read figure, because the input was not in the correct format!" << std::endl;
-						std::cout << "If you entered the figure from the standart input, know that the figure is not added!" << std::endl;
-						std::cout << "If you chose to read the figures from a file, check the content of the file and know that the figure is not added!" << std::endl;
-					}
-					else
-					{
-						figures.push_back(figure);
-					}
-
+					std::cout << "Could't read figure, because the input was not in the correct format!" << std::endl;
+					std::cout << "If you entered the figure from the standart input, know that the figure is not added!" << std::endl;
+					std::cout << "If you chose to read the figures from a file, check the content of the file and know that the figure is not added!" << std::endl;
 				}
-				catch (const NonPositiveParameterException& ex)
+				else
 				{
-					std::cout << "Invalid figure parameters!" << std::endl;
-					std::cout << "Figure was not added!" << std::endl;
-					std::cout << ex.what() << std::endl;
-
-				}
-				catch (const TriangleInequalityException& ex)
-				{
-					std::cout << "Invalid triangle inequality exception!" << std::endl;
-					std::cout << "Triangle was not added!" << std::endl;
-					std::cout << ex.what() << std::endl;
+					figures.push_back(figure);
 				}
 
 			}
-
-			for (int i = 0; i < figures.size(); i++)
+			catch (const NonPositiveParameterException& ex)
 			{
-				std::cout << figures[i]->toString() << std::endl;
+				std::cout << "Invalid figure parameters!" << std::endl;
+				std::cout << "Figure was not added!" << std::endl;
+				std::cout << ex.what() << std::endl;
+
 			}
-
-			// TODO :: LOCGIC FOR HANDLING FIGURES
-
-			for (int i = 0; i < figures.size(); i++)
+			catch (const TriangleInequalityException& ex)
 			{
-				factory->recycleFigure(figures[i]);
+				std::cout << "Invalid triangle inequality exception!" << std::endl;
+				std::cout << "Triangle was not added!" << std::endl;
+				std::cout << ex.what() << std::endl;
 			}
-
-			FigureFactorySupplier::recycleFactory(factory);
 		}
-		// TODO: THINK THIS AGAIN
-		catch (...)
+
+		for (int i = 0; i < figures.size(); i++)
 		{
-			FigureFactorySupplier::recycleFactory(factory);
-			throw;
+			std::cout << figures[i]->toString() << std::endl;
 		}
+
+		for (int i = 0; i < figures.size(); i++)
+		{
+			factory->recycleFigure(figures[i]);
+		}
+
 	}
 }
 

@@ -10,7 +10,7 @@ double Circle::getPerimeter() const
 
 std::unique_ptr<Figure> Circle::clone() const
 {
-    return std::unique_ptr<Circle>(new Circle(this->getRadius()));
+    return std::make_unique<Circle>(this->getRadius());
 }
 
 double Circle::getRadius() const
