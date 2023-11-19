@@ -7,13 +7,14 @@ class Rectangle : public Figure
 public:
 	Rectangle(double x, double y)
 	{
+		this->representativeName = "rectangle";
+
 		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(x, "x of rectangle");
 
 		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(y, "y of rectangle");
 
-		this->representativeName = "rectangle";
 		this->parameters.push_back(x);
 		this->parameters.push_back(y);
 		sortParameters();

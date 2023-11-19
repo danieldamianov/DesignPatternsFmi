@@ -12,7 +12,7 @@ void Figure::ensureParameterIsPositive(double number, std::string parameter) con
 {
 	if (number <= 0)
 	{
-		throw NonPositiveParameterException("Parameter " + parameter + " is non negative!");
+		throw NonPositiveParameterException("Figure: " + this->representativeName + " Parameter: " + parameter + " is non positive!");
 	}
 }
 

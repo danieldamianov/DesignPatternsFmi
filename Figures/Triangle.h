@@ -10,6 +10,8 @@ private:
 public:
 	Triangle(double a, double b, double c)
 	{
+		this->representativeName = "triangle";
+
 		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(a, "a of rectangle");
 
@@ -22,7 +24,6 @@ public:
 		// may throw TriangleInequalityException
 		ensureTriangleInequality(a, b, c);
 
-		this->representativeName = "triangle";
 		this->parameters.push_back(a);
 		this->parameters.push_back(b);
 		this->parameters.push_back(c);

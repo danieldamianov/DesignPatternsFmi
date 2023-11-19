@@ -5,7 +5,13 @@ void Triangle::ensureTriangleInequality(double a, double b, double c)
 {
 	if (a >= b + c || b >= a + c || c >= a + b)
 	{
-		throw TriangleInequalityException("Tirangle inequality not satisfied!");
+		throw TriangleInequalityException(
+			std::string("Tirangle inequality not satisfied! Invalid sides: ")
+			+ std::to_string(a)
+			+ " "
+			+ std::to_string(b)
+			+ " "
+			+ std::to_string(c));
 	}
 }
 

@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 #include "FigureFactorySupplier.h"
+#include "NonPositiveParameterException.h"
+#include "TriangleInequalityException.h"
 #include <iostream>
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
@@ -27,7 +29,7 @@ int main()
 	// TODO:: fix this!
 	while (true)
 	{
-		
+
 		IFigureFactory* factory = nullptr;
 
 		int numberOfFigures;
@@ -57,22 +59,52 @@ int main()
 
 		try
 		{
-			// TODO :: FILE input doesn't work!!
 			factory = FigureFactorySupplier::getFactory(input);
 
 			for (int i = 0; i < numberOfFigures; i++)
 			{
-				figures.push_back(factory->createFigure());
+				Figure* figure = nullptr;
+
+				try
+				{
+					figure = factory->createFigure();
+
+					if (figure == nullptr)
+					{
+						std::cout << "Could't read figure, because the input was not in the correct format!" << std::endl;
+						std::cout << "If you entered the figure from the standart input, know that the figure is not added!" << std::endl;
+						std::cout << "If you chose to read the figures from a file, check the content of the file and know that the figure is not added!" << std::endl;
+					}
+					else
+					{
+						figures.push_back(figure);
+					}
+
+				}
+				catch (const NonPositiveParameterException& ex)
+				{
+					std::cout << "Invalid figure parameters!" << std::endl;
+					std::cout << "Figure was not added!" << std::endl;
+					std::cout << ex.what() << std::endl;
+
+				}
+				catch (const TriangleInequalityException& ex)
+				{
+					std::cout << "Invalid triangle inequality exception!" << std::endl;
+					std::cout << "Triangle was not added!" << std::endl;
+					std::cout << ex.what() << std::endl;
+				}
+
 			}
 
-			for (int i = 0; i < numberOfFigures; i++)
+			for (int i = 0; i < figures.size(); i++)
 			{
 				std::cout << figures[i]->toString() << std::endl;
 			}
 
 			// TODO :: LOCGIC FOR HANDLING FIGURES
 
-			for (int i = 0; i < numberOfFigures; i++)
+			for (int i = 0; i < figures.size(); i++)
 			{
 				factory->recycleFigure(figures[i]);
 			}
@@ -144,7 +176,7 @@ void initializeFile()
 {
 	std::ofstream stream("figures.txt", std::ios_base::trunc);
 
-	stream << "circle 37.5";               stream << std::endl;  
+	stream << "circle 37.5";               stream << std::endl;
 	stream << "rectangle 14.2 92.8";	   stream << std::endl;
 	stream << "triangle 5.3 77.1 60.4";	   stream << std::endl;
 	stream << "circle 20.6";			   stream << std::endl;
@@ -181,7 +213,7 @@ void initializeFile()
 	stream << "rectangle 21.8 93.7";	   stream << std::endl;
 	stream << "triangle 3.7 48.6 89.1";	   stream << std::endl;
 	stream << "circle 70.9";			   stream << std::endl;
-	
+
 
 	stream.close();
 }

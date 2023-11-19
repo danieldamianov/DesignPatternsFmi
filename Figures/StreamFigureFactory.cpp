@@ -25,7 +25,7 @@ std::vector<std::string> StreamFigureFactory::getPartsFormInput(std::string inpu
 			currentPart += c;
 		}
 		else if (!currentPart.empty()) {
-			
+
 			parts.push_back(currentPart);
 			currentPart.clear();
 		}

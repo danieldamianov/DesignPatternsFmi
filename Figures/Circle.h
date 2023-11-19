@@ -13,10 +13,10 @@ private:
 public:
 	Circle(double radius)
 	{
+		this->representativeName = "circle";
 		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(radius, "radius");
 
-		this->representativeName = "circle";
 		this->parameters.push_back(radius);
 		sortParameters();
 	}
