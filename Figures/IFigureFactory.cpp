@@ -1,11 +1,6 @@
 #include "IFigureFactory.h"
 #include <regex>
 
-void IFigureFactory::recycleFigure(Figure* figure)
-{
-	delete figure;
-}
-
 bool IFigureFactory::validateInput(std::string input)
 {
 	std::regex pattern(R"(\s*(circle|rectangle|triangle)\s+([\d.]+)\s*([\d.]+)?\s*([\d.]+)?\s*)");

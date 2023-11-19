@@ -1,8 +1,8 @@
 #include "StreamFigureFactory.h"
-#include "InvalidFigureTypeException.h"
 #include "Circle.h"
 #include "Triangle.h"
 #include "Rectangle.h"
+#include <cassert>
 
 void StreamFigureFactory::readLine(std::string& var)
 {
@@ -38,41 +38,35 @@ std::vector<std::string> StreamFigureFactory::getPartsFormInput(std::string inpu
 	return parts;
 }
 
-// TODO :: add validation of the int parameters!
-Figure* StreamFigureFactory::createFigure()
+std::unique_ptr<Figure> StreamFigureFactory::createFigure()
 {
-	Figure* figure = nullptr;
 	std::string input;
 	readLine(input);
 
-	// TODO :: CHECK IN THE CALLER CODE FOR NULLPTR!
 	if (validateInput(input) == false)
 	{
-		// TODO:: CHANGE WITH SMART POINTER
 		return nullptr;
 	}
 
 	std::vector<std::string> inputParts = getPartsFormInput(input);
 
-	getFigure(inputParts, figure);
-
-	return figure;
+	return getFigure(inputParts);
 }
 
-void StreamFigureFactory::getFigure(std::vector<std::string>& inputParts, Figure*& figure)
+std::unique_ptr<Figure> StreamFigureFactory::getFigure(std::vector<std::string>& inputParts)
 {
 	if (inputParts[0] == "circle")
 	{
 		double radius = std::stod(inputParts[1]);
 
-		figure = new Circle(radius);
+		return std::make_unique<Circle>(radius);
 	}
 	else if (inputParts[0] == "rectangle")
 	{
 		double a = std::stod(inputParts[1]);
 		double b = std::stod(inputParts[2]);
 
-		figure = new Rectangle(a, b);
+		return std::make_unique<Rectangle>(a, b);
 	}
 	else if (inputParts[0] == "triangle")
 	{
@@ -80,10 +74,9 @@ void StreamFigureFactory::getFigure(std::vector<std::string>& inputParts, Figure
 		double y = std::stod(inputParts[2]);
 		double z = std::stod(inputParts[3]);
 
-		figure = new Triangle(x, y, z);
+		return std::make_unique<Triangle>(x, y, z);
 	}
-	else // THINK AGAIN IF THIS IS THE PROPER INPLEMENTATION!
-	{
-		throw InvalidFigureTypeException("Stream provided an invalid figure type!");
-	}
+
+	assert(false);
+	return nullptr;
 }

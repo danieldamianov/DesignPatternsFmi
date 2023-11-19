@@ -146,7 +146,6 @@
     <ClCompile Include="FigureFactorySupplier.cpp" />
     <ClCompile Include="Figures.cpp" />
     <ClCompile Include="IFigureFactory.cpp" />
-    <ClCompile Include="InvalidFigureTypeException.cpp" />
     <ClCompile Include="InvalidRandomNumberException.cpp" />
     <ClCompile Include="NegativeParameterException.cpp" />
     <ClCompile Include="RandomFigureFactory.cpp" />
@@ -162,7 +161,6 @@
     <ClInclude Include="Figure.h" />
     <ClInclude Include="FigureFactorySupplier.h" />
     <ClInclude Include="IFigureFactory.h" />
-    <ClInclude Include="InvalidFigureTypeException.h" />
     <ClInclude Include="InvalidRandomNumberException.h" />
     <ClInclude Include="NonPositiveParameterException.h" />
     <ClInclude Include="RandomFigureFactory.h" />

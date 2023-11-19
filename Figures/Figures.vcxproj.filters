@@ -45,9 +45,6 @@
     <ClCompile Include="InvalidRandomNumberException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InvalidFigureTypeException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StringFigureFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,9 +81,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InvalidRandomNumberException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InvalidFigureTypeException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StringFigureFactory.h">

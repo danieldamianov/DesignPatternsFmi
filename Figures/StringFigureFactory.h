@@ -12,6 +12,6 @@ public:
 
 	}
 
-	virtual Figure* createFigure() override;
+	virtual std::unique_ptr<Figure> createFigure() override;
 };
 

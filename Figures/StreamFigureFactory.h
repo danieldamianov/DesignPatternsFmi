@@ -12,7 +12,7 @@ private:
 	void readLine(std::string& var);
 
 	static std::vector<std::string> getPartsFormInput(std::string input);
-	static void getFigure(std::vector<std::string>& inputParts, Figure*& figure);
+	static std::unique_ptr<Figure> getFigure(std::vector<std::string>& inputParts);
 
 public:
 
@@ -27,6 +27,6 @@ public:
 		this->stealedStream = std::move(stream);
 	}
 
-	virtual Figure* createFigure() override;
+	virtual std::unique_ptr<Figure> createFigure() override;
 };
 
