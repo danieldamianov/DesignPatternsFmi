@@ -4,7 +4,7 @@
 class InvalidRandomNumberException : public std::exception
 {
 public:
-    InvalidRandomNumberException(std::string message) : errorMessage(message) {}
+    InvalidRandomNumberException(std::string message) : errorMessage(message) { }
 
     const char* what() const override {
         return errorMessage.c_str();

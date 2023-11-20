@@ -10,9 +10,9 @@
 #include <iostream>
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-//#include "doctest.h"
+#include "doctest.h"
 
-//#include "CircleTests.hpp"
+#include "CircleTests.hpp"
 
 // options for initializing the figures:
 // 1 option:STDIN
@@ -21,6 +21,8 @@
 
 void initializeFile();
 
+// TODO:: CHECK IF THE FILESTREAM LEAKS!!!!
+// TODO:: DELETE THE MEMORY LEAK TESTING TEMPLATE!!!
 // 
 // TODO:: CHECK FOR ENCAPSULATION OF PRIVATE MEMBERS THE WHOLE PROGRAM
 // TODO:: CHECK FOR EXCEPTION SAFETY THE ENTIRE PROGRAM!!!!
@@ -36,7 +38,8 @@ void initializeFile();
 	// But generally the figures which are created in the factory must be destroyed there to prevent memory leaks.
 	// Another reason that i chose this method is that i prefer to have maximal control over that 
 	// when an object is destroyed, which is native to c++
-/*int main()
+/*
+int main()
 {
 	//initializeFile();
 
@@ -122,20 +125,20 @@ void initializeFile();
 		}
 
 	}
-}*/
-
+}
+*/
 
 /// <summary>
 /// TEST CODE FOR MEMORY LEAKS!!!!
 /// </summary>
 /// <returns></returns>
-int main()
+/*int main()
 {
 	FigureFactorySupplier figureFactorySupplier;
 
 	while (true)
 	{
-		std::string input[2]{ "RANDOM", "FILE figures.txt" };
+		std::string input[2] { "RANDOM", "FILE figures.txt" };
 
 		int numberOfFigures = 15;
 
@@ -234,7 +237,7 @@ int main()
 	//{
 	//	std::cout << figureClones[i]->toString() << std::endl;
 	//}
-}
+}*/
 
 void initializeFile()
 {

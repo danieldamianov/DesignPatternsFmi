@@ -1,12 +1,12 @@
-FactoryArchitecture? добре е
+						FactoryArchitecture? добре е
 Testing the random by mocking the random function да
-Different ways to delete figures and factories and clones! не е добре, само едното е по-оптимално
-Do i call the delete factory method properly! да, със 3 точки е по-добре, но някакъв RAII е идеално
-File Stream proper handling!!! НЕ!!!
-How much validation to include? As much as possible? да
-Do we have to demonstrate some concrete behaviour in the main function?
+						Different ways to delete figures and factories and clones! не е добре, само едното е по-оптимално
+						Do i call the delete factory method properly! да, със 3 точки е по-добре, но някакъв RAII е идеално
+						File Stream proper handling!!! НЕ!!!
+						How much validation to include? As much as possible? да
+						Do we have to demonstrate some concrete behaviour in the main function?
 
-триъгълника - да хвърлям грешка в конструктора!!!
-след това new-то има strong exception safety- не трябва да трия нищо!!!
+						триъгълника - да хвърлям грешка в конструктора!!!
+						след това new-то има strong exception safety- не трябва да трия нищо!!!
 
 Code Coverage

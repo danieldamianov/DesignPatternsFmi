@@ -5,6 +5,7 @@
 
 class Figure
 {
+
 protected:
 	std::string representativeName;
 
