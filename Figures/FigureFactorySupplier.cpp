@@ -5,6 +5,8 @@
 #include <memory>
 #include "StreamFigureFactory.h"
 #include "RandomFigureFactory.h"
+#include <regex>
+#include <cassert>
 
 // options for initializing the figures:
 // 1 option:STDIN
@@ -31,7 +33,32 @@ std::unique_ptr<IFigureFactory> FigureFactorySupplier::getFactory(std::string in
 		return std::make_unique<RandomFigureFactory>();
 	}
 
+	assert(false);
 	return nullptr;
+}
+
+bool FigureFactorySupplier::validateInputOption(std::string input)
+{
+	std::regex pattern(R"(STDIN|FILE [\w\d-]+\.[\w\d-]+|RANDOM)");
+
+	if (std::regex_match(input, pattern) == false)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool FigureFactorySupplier::validateNumberOrStop(std::string number)
+{
+	std::regex pattern(R"(\d+|STOP)");
+	
+	if (std::regex_match(number, pattern) == false)
+	{
+		return false;
+	}
+
+	return true;
 }
 
 std::string FigureFactorySupplier::getOption(std::string input)

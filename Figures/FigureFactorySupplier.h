@@ -12,5 +12,8 @@ private:
 public:
 
 	std::unique_ptr<IFigureFactory> getFactory(std::string input);
+
+	bool validateInputOption(std::string input);
+	bool validateNumberOrStop(std::string number);
 };
 
