@@ -2,6 +2,8 @@
 #define __RANDOM_FIGURE_FACTORY_TESTS_HPP
 
 #include "doctest.h"
+// TODO:: make my min and max
+#include <algorithm>
 #include <memory>
 #include "StringFigureFactory.h"
 #include "FigureFactorySupplier.h"
@@ -18,11 +20,11 @@ TEST_CASE("Test circle radius")
 	int circleCounter = 0;
 	int rectangleCounter = 0;
 
-	double trianglePerimeterSum = 0;
-	double circlePerimeterSum = 0;
-	double rectanglePerimeterSum = 0;
+	double trianglePerimeterAverage = 0;
+	double circlePerimeterAverage = 0;
+	double rectanglePerimeterAverage = 0;
 
-	for (int i = 0; i < 10000; i++)
+	for (int i = 0; i < 100000; i++)
 	{
 		std::unique_ptr<Figure> figure = randomFigureFactory->createFigure();
 		std::string figureName = figure->getRepresentativeName();
@@ -30,45 +32,58 @@ TEST_CASE("Test circle radius")
 		if (figureName == "circle")
 		{
 			circleCounter++;
-			circlePerimeterSum += figure->getPerimeter();
+			circlePerimeterAverage += figure->getPerimeter();
 		}
 
 		else if (figureName == "triangle")
 		{
 			triangleCounter++;
-			trianglePerimeterSum += figure->getPerimeter();
+			trianglePerimeterAverage += figure->getPerimeter();
 		}
 		else if (figureName == "rectangle")
 		{
 			rectangleCounter++;
-			rectanglePerimeterSum += figure->getPerimeter();
+			rectanglePerimeterAverage += figure->getPerimeter();
 		}
 	}
 
-	circlePerimeterSum /= circleCounter;
-	trianglePerimeterSum /= triangleCounter;
-	rectanglePerimeterSum /= rectangleCounter;
+	circlePerimeterAverage /= circleCounter;
+	trianglePerimeterAverage /= triangleCounter;
+	rectanglePerimeterAverage /= rectangleCounter;
 
-	CHECK(triangleCounter > 3000);
-	CHECK(triangleCounter < 4000);
-	CHECK(rectangleCounter > 3000);
-	CHECK(rectangleCounter < 4000);
-	CHECK(circleCounter > 3000);
-	CHECK(circleCounter < 4000);
+	CHECK(triangleCounter > 32000);
+	CHECK(triangleCounter < 35000);
+	CHECK(rectangleCounter > 32000);
+	CHECK(rectangleCounter < 35000);
+	CHECK(circleCounter > 32000);
+	CHECK(circleCounter < 35000);
 
-	double expectedAverageCirclePerimeter = 0;
+	double const avgFrom1To100 = 50.5;
+	double expectedAverageCirclePerimeter = avgFrom1To100 * 2 * PI;
+	double expectedAverageRectanglePerimeter = avgFrom1To100 * 4;
 
-	for (int i = 0; i < 100; i++)
+	double thirdSidesAverage = 0;
+
+
+	for (int i = 1; i <= 100; i++)
 	{
-		expectedAverageCirclePerimeter += 2 * PI * i;
+		for (int j = 1; j <= 100; j++)
+		{
+			thirdSidesAverage += (std::max((abs(i - j) + 1), 1) + std::min((i + j - 1), 100)) / 2.0;
+		}
 	}
 
-	expectedAverageCirclePerimeter /= 100;
-	
-	//CHECK(circleCounter > 3000 && circleCounter < 4000);
-	//CHECK(rectangleCounter > 3000 && rectangleCounter < 4000 );
+	thirdSidesAverage /= 10000;
+	double expectedtrianglePerimeter = thirdSidesAverage + avgFrom1To100 * 2;
 
-	CHECK(true);
+	CHECK(circlePerimeterAverage > expectedAverageCirclePerimeter - 3);
+	CHECK(circlePerimeterAverage < expectedAverageCirclePerimeter + 3);
+
+	CHECK(trianglePerimeterAverage > expectedtrianglePerimeter - 3);
+	CHECK(trianglePerimeterAverage < expectedtrianglePerimeter + 3);
+
+	CHECK(rectanglePerimeterAverage > expectedAverageRectanglePerimeter - 3);
+	CHECK(rectanglePerimeterAverage < expectedAverageRectanglePerimeter + 3);
 }
 
 #endif

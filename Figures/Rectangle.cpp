@@ -3,7 +3,7 @@
 
 double Rectangle::getPerimeter() const
 {
-	return this->getX() + this->getY();
+	return 2 * (this->getX() + this->getY());
 }
 
 std::unique_ptr<Figure> Rectangle::clone() const
