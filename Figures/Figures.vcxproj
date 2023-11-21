@@ -147,7 +147,6 @@
     <ClCompile Include="Figures.cpp" />
     <ClCompile Include="IFigureFactory.cpp" />
     <ClCompile Include="InvalidRandomNumberException.cpp" />
-    <ClCompile Include="NegativeParameterException.cpp" />
     <ClCompile Include="RandomFigureFactory.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="StreamFigureFactory.cpp" />

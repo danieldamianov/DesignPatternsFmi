@@ -48,9 +48,6 @@
     <ClCompile Include="StringFigureFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NegativeParameterException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TriangleInequalityException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
