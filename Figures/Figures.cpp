@@ -13,6 +13,8 @@
 #include "doctest.h"
 
 #include "CircleTests.hpp"
+#include "TriangleTests.hpp"
+#include "RandomFigureFactoryTests.hpp"
 
 // options for initializing the figures:
 // 1 option:STDIN
@@ -21,6 +23,7 @@
 
 void initializeFile();
 
+// TODO:: VALGRIND
 // TODO:: CHECK IF THE FILESTREAM LEAKS!!!!
 // TODO:: DELETE THE MEMORY LEAK TESTING TEMPLATE!!!
 // 

@@ -95,6 +95,12 @@
     <ClInclude Include="TriangleInequalityException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TriangleTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomFigureFactoryTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Questions.txt" />

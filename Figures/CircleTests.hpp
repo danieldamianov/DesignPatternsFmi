@@ -1,5 +1,5 @@
-#ifndef __LIST_TESTS_HPP
-#define __LIST_TESTS_HPP
+#ifndef __CIRCLE_TESTS_HPP
+#define __CIRCLE_TESTS_HPP
 
 #include "doctest.h"
 #include <memory>
@@ -15,29 +15,6 @@ TEST_CASE("Test circle radius")
 
 	CHECK_EQ(circle->getRepresentativeName(), "circle");
 	CHECK(Figure::checkDoublesForEquality(circle->getPerimeter(), 2 * PI * 4));
-}
-
-TEST_CASE("Test cloning triangle")
-{
-	std::unique_ptr<IFigureFactory> factory = std::make_unique<StringFigureFactory>("triangle 4 3 6");
-	std::unique_ptr<Figure> triangle = factory->createFigure();
-	std::unique_ptr<Figure> clonedTriangle = triangle->clone();
-
-	CHECK(triangle->equals(*clonedTriangle));
-}
-
-TEST_CASE("Test equal function")
-{
-	 std::unique_ptr<IFigureFactory> factory1 = std::make_unique<StringFigureFactory>("triangle 4 3 6");
-	 std::unique_ptr<IFigureFactory> factory2 = std::make_unique<StringFigureFactory>("triangle 6 3 4");
-	 std::unique_ptr<IFigureFactory> factory3 = std::make_unique<StringFigureFactory>("triangle 6 9 4");
-
-	std::unique_ptr<Figure> triangle1 = factory1->createFigure();
-	std::unique_ptr<Figure> triangle2 = factory2->createFigure();
-	std::unique_ptr<Figure> triangle3 = factory3->createFigure();
-
-	CHECK(triangle1->equals(*triangle2));
-	CHECK(triangle1->equals(*triangle3) == false);
 }
 
 #endif

@@ -164,11 +164,13 @@
     <ClInclude Include="InvalidRandomNumberException.h" />
     <ClInclude Include="NonPositiveParameterException.h" />
     <ClInclude Include="RandomFigureFactory.h" />
+    <ClInclude Include="RandomFigureFactoryTests.hpp" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="StreamFigureFactory.h" />
     <ClInclude Include="StringFigureFactory.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="TriangleInequalityException.h" />
+    <ClInclude Include="TriangleTests.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Questions.txt" />
