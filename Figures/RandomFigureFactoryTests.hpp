@@ -8,7 +8,7 @@
 #include "StringFigureFactory.h"
 #include "FigureFactorySupplier.h"
 
-TEST_CASE("Test circle radius")
+TEST_CASE("Test random factory")
 {
 	const double PI = 4 * atan(1);
 

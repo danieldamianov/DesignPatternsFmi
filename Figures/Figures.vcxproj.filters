@@ -98,6 +98,9 @@
     <ClInclude Include="RandomFigureFactoryTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StreamFigureFactoryTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Questions.txt" />
