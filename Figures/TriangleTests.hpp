@@ -6,6 +6,17 @@
 #include "StringFigureFactory.h"
 #include "FigureFactorySupplier.h"
 
+TEST_CASE("Test triangle inequality exception")
+{
+	std::unique_ptr<IFigureFactory> factory1 = std::make_unique<StringFigureFactory>("triangle 4 3 7");
+	std::unique_ptr<IFigureFactory> factory2 = std::make_unique<StringFigureFactory>("triangle 4 1 7");
+	std::unique_ptr<IFigureFactory> factory3 = std::make_unique<StringFigureFactory>("triangle 4 6 7");
+
+	REQUIRE_THROWS_AS(factory1->createFigure(), TriangleInequalityException);
+	REQUIRE_THROWS_AS(factory2->createFigure(), TriangleInequalityException);
+	REQUIRE_NOTHROW(factory3->createFigure());
+}
+
 TEST_CASE("Test cloning triangle")
 {
 	std::unique_ptr<IFigureFactory> factory = std::make_unique<StringFigureFactory>("triangle 4 3 6");
