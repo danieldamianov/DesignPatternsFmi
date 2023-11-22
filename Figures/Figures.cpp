@@ -16,6 +16,7 @@
 #include "TriangleTests.hpp"
 #include "RandomFigureFactoryTests.hpp"
 #include "StreamFigureFactoryTests.hpp"
+#include "RectangleTests.hpp"
 
 // options for initializing the figures:
 // 1 option:STDIN

@@ -165,6 +165,7 @@
     <ClInclude Include="RandomFigureFactory.h" />
     <ClInclude Include="RandomFigureFactoryTests.hpp" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="RectangleTests.hpp" />
     <ClInclude Include="StreamFigureFactory.h" />
     <ClInclude Include="StreamFigureFactoryTests.hpp" />
     <ClInclude Include="StringFigureFactory.h" />
