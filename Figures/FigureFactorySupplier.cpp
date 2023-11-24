@@ -24,9 +24,9 @@ std::unique_ptr<IFigureFactory> FigureFactorySupplier::getFactory(std::string in
 	else if (option == "FILE")
 	{
 		std::string fileName = getFileName(input);
-		std::unique_ptr<std::ifstream> ptr = std::make_unique<std::ifstream>(fileName);
+		std::unique_ptr<std::ifstream> pointerToStream = std::make_unique<std::ifstream>(fileName);
 		
-		return std::make_unique<StreamFigureFactory>((std::move(ptr)));
+		return std::make_unique<StreamFigureFactory>((std::move(pointerToStream)));
 	}
 	else if (option == "RANDOM")
 	{
