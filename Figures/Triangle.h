@@ -12,16 +12,12 @@ public:
 	{
 		this->representativeName = "triangle";
 
-		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(a, "a of rectangle");
 
-		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(b, "b of rectangle");
 
-		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(c, "c of rectangle");
 
-		// may throw TriangleInequalityException
 		ensureTriangleInequality(a, b, c);
 
 		this->parameters.push_back(a);

@@ -13,7 +13,6 @@ public:
 	{
 		this->representativeName = "circle";
 
-		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(radius, "radius");
 
 		this->parameters.push_back(radius);

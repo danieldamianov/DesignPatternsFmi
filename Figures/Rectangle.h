@@ -9,10 +9,8 @@ public:
 	{
 		this->representativeName = "rectangle";
 
-		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(x, "x of rectangle");
 
-		// may throw NonPositivveParameterException
 		ensureParameterIsPositive(y, "y of rectangle");
 
 		this->parameters.push_back(x);

@@ -11,7 +11,6 @@ protected:
 
 	std::vector<double> parameters;
 	
-	// TODO :: This may throw some validation exceptions! Chekc for them in the consumer code!;
 	Figure() { }
 
 	void sortParameters();

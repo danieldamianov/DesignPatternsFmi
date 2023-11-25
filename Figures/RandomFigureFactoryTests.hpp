@@ -2,7 +2,6 @@
 #define __RANDOM_FIGURE_FACTORY_TESTS_HPP
 
 #include "doctest.h"
-// TODO:: make my min and max
 #include <algorithm>
 #include <memory>
 #include "StringFigureFactory.h"
