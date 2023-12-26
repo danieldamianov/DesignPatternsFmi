@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include "TextTransformationDecoratorBase.h"
+#include "TextTransformationDecoratorMovedObject.h"
+#include "TextTransformationDecoratorSharedObject.h"
 #include "CapitalizeTransformation.h"
 #include "LeftTrimTransformation.h"
 #include "RichLabel.h"
@@ -16,18 +18,28 @@
 
 int main()
 {
-	//CapitalizeTransformation capitalizeTransformation;
-	//LeftTrimTransformation leftTrimTransformation;
-	//
-	//// TODO::MAKE SMARTPOINTER!
-	//// todo:: work in github repo
-	//std::shared_ptr<Label> richLabel = std::make_shared<RichLabel>
-	//	(Color::Blue , Font::BookmanOldStyle, "     test");
-	//richLabel = std::make_unique<TextTransformationDecorator>(*richLabel, leftTrimTransformation);
-	//richLabel = std::make_unique<TextTransformationDecorator>(*richLabel, capitalizeTransformation);
-	//
-	//std::cout << richLabel->getText() << std::endl;
-	//
-	//// TODO::DELETE THESE
-	//return 0;
+	std::unique_ptr<TextTransformation> capitalizeTransformation
+		= std::make_unique<CapitalizeTransformation>();
+	std::unique_ptr<TextTransformation> leftTrimTransformation
+		= std::make_unique<LeftTrimTransformation>();
+	
+	// TODO::MAKE SMARTPOINTER!
+	// todo:: work in github repo
+	std::shared_ptr<Label> richLabel = std::make_shared<RichLabel>
+		(Color::Blue , Font::BookmanOldStyle, "     test");
+
+	//if (true)
+	//{
+		std::unique_ptr<Label> decorator = std::make_unique<TextTransformationDecoratorSharedObject>
+			(richLabel, std::move(leftTrimTransformation));
+
+		decorator = std::make_unique<TextTransformationDecoratorMovedObject>
+			(std::move(decorator), std::move(capitalizeTransformation));
+
+		std::cout << decorator->getText() << std::endl;
+
+	//}
+	
+	// TODO::DELETE THESE
+	return 0;
 }
