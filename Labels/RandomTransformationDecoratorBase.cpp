@@ -5,7 +5,7 @@ void RandomTransformationDecoratorBase::initializeTransformations
 {
 	for (int i = 0; i < transformations.size(); i++)
 	{
-		this->transformations.push_back(transformations[i]);
+		this->transformations.push_back(std::move(transformations[i]));
 	}
 }
 
