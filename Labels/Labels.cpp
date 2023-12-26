@@ -22,14 +22,14 @@ int main()
 		= std::make_unique<CapitalizeTransformation>();
 	std::unique_ptr<TextTransformation> leftTrimTransformation
 		= std::make_unique<LeftTrimTransformation>();
-	
+
 	// TODO::MAKE SMARTPOINTER!
 	// todo:: work in github repo
 	std::shared_ptr<Label> richLabel = std::make_shared<RichLabel>
-		(Color::Blue , Font::BookmanOldStyle, "     test");
+		(Color::Blue, Font::BookmanOldStyle, "     test");
 
-	//if (true)
-	//{
+	if (true)
+	{
 		std::unique_ptr<Label> decorator = std::make_unique<TextTransformationDecoratorSharedObject>
 			(richLabel, std::move(leftTrimTransformation));
 
@@ -37,9 +37,8 @@ int main()
 			(std::move(decorator), std::move(capitalizeTransformation));
 
 		std::cout << decorator->getText() << std::endl;
-
-	//}
-	
+	}
+	std::cout << richLabel->getText(); // should print "    test"
 	// TODO::DELETE THESE
 	return 0;
 }

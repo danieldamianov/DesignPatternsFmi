@@ -13,4 +13,11 @@ public:
 	RichLabel(Color color, Font font, std::string text);
 	Color getColor();
 	Font getFont();
+
+	//// DEBUG PURPOSES
+	//~RichLabel()
+	//{
+	//	int a = 5;
+	//}
+	//// DEBUG PURPOSES
 };

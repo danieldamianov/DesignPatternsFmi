@@ -8,5 +8,12 @@ class TextTransformationDecoratorSharedObject : public TextTransformationDecorat
 public:
 	TextTransformationDecoratorSharedObject 
 	(std::shared_ptr<Label> label, std::unique_ptr<TextTransformation> textTransformation);
+
+	//// DEBUG PURPOSES
+	//~TextTransformationDecoratorSharedObject()
+	//{
+	//	int a = 5;
+	//}
+	//// DEBUG PURPOSES
 };
 

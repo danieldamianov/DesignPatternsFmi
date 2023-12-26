@@ -144,6 +144,9 @@
     <ClCompile Include="LabelDecoratorBase.cpp" />
     <ClCompile Include="Labels.cpp" />
     <ClCompile Include="LeftTrimTransformation.cpp" />
+    <ClCompile Include="RandomTransformationDecoratorMovedObject.cpp" />
+    <ClCompile Include="RandomTransformationDecoratorBase.cpp" />
+    <ClCompile Include="RandomTransformationDecoratorSharedObject.cpp" />
     <ClCompile Include="RichLabel.cpp" />
     <ClCompile Include="SimpleLabel.cpp" />
     <ClCompile Include="TextTransformation.cpp" />
@@ -159,6 +162,9 @@
     <ClInclude Include="Label.h" />
     <ClInclude Include="LabelDecoratorBase.h" />
     <ClInclude Include="LeftTrimTransformation.h" />
+    <ClInclude Include="RandomTransformationDecoratorMovedObject.h" />
+    <ClInclude Include="RandomTransformationDecoratorBase.h" />
+    <ClInclude Include="RandomTransformationDecoratorSharedObject.h" />
     <ClInclude Include="RichLabel.h" />
     <ClInclude Include="RichLabelTests.hpp" />
     <ClInclude Include="SimpleLabel.h" />

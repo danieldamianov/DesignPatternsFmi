@@ -14,4 +14,11 @@ protected:
 		std::unique_ptr<TextTransformation> textTransformation);
 
 	virtual std::string getText() const override;
+
+	//// DEBUG PURPOSES
+	//~TextTransformationDecoratorBase()
+	//{
+	//	int a = 5;
+	//}
+	//// DEBUG PURPOSES
 };

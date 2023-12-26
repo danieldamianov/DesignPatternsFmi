@@ -10,5 +10,12 @@ public:
 	SimpleLabel(std::string text);
 
 	virtual std::string getText() const override;
+
+	//// DEBUG PURPOSES
+	//~SimpleLabel()
+	//{
+	//	int a = 5;
+	//}
+	//// DEBUG PURPOSES
 };
 
