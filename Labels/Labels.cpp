@@ -2,7 +2,7 @@
 //
 
 #include <iostream>
-#include "TextTransformationDecorator.h"
+#include "TextTransformationDecoratorBase.h"
 #include "CapitalizeTransformation.h"
 #include "LeftTrimTransformation.h"
 #include "RichLabel.h"
@@ -16,17 +16,18 @@
 
 int main()
 {
-	CapitalizeTransformation capitalizeTransformation;
-	LeftTrimTransformation leftTrimTransformation;
-
-	// TODO::MAKE SMARTPOINTER!
-	// todo:: work in github repo
-	Label* richLabel = new RichLabel(Color::Blue , Font::BookmanOldStyle, "     test");
-	richLabel = new TextTransformationDecorator(*richLabel, leftTrimTransformation);
-	richLabel = new TextTransformationDecorator(*richLabel, capitalizeTransformation);
-
-	std::cout << richLabel->getText() << std::endl;
-
-	// TODO::DELETE THESE
-	return 0;
+	//CapitalizeTransformation capitalizeTransformation;
+	//LeftTrimTransformation leftTrimTransformation;
+	//
+	//// TODO::MAKE SMARTPOINTER!
+	//// todo:: work in github repo
+	//std::shared_ptr<Label> richLabel = std::make_shared<RichLabel>
+	//	(Color::Blue , Font::BookmanOldStyle, "     test");
+	//richLabel = std::make_unique<TextTransformationDecorator>(*richLabel, leftTrimTransformation);
+	//richLabel = std::make_unique<TextTransformationDecorator>(*richLabel, capitalizeTransformation);
+	//
+	//std::cout << richLabel->getText() << std::endl;
+	//
+	//// TODO::DELETE THESE
+	//return 0;
 }

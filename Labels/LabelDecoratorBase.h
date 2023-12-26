@@ -1,15 +1,19 @@
 #pragma once
 
 #include "Label.h"
+#include <memory>
 
 class LabelDecoratorBase : public Label
 {
 protected: 
-	const Label& subject;
+	std::shared_ptr<Label> sharedSubject;
+	std::unique_ptr<Label> movedSubject;
 
 public:
-	LabelDecoratorBase(const Label& label);
-	virtual std::string getText() const override;
+	LabelDecoratorBase(std::shared_ptr<Label> label);
+	LabelDecoratorBase(std::unique_ptr<Label> label);
+
+	virtual std::string getText() const override = 0;
 };
 
 

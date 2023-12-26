@@ -6,5 +6,6 @@ class TextTransformation
 {
 public:
 	virtual std::string transform(std::string text) const = 0;
+	virtual ~TextTransformation() { }
 };
 

@@ -1,9 +1,14 @@
 #include "LabelDecoratorBase.h"
 
-LabelDecoratorBase::LabelDecoratorBase(const Label& label) : subject(label)
-{ }
-
-std::string LabelDecoratorBase::getText() const
+LabelDecoratorBase::LabelDecoratorBase(std::shared_ptr<Label> label)
 {
-	return this->subject.getText();
+	sharedSubject = label;
+	movedSubject = nullptr;
 }
+
+LabelDecoratorBase::LabelDecoratorBase(std::unique_ptr<Label> label)
+{
+	movedSubject = std::move(label);
+	sharedSubject = nullptr;
+}
+

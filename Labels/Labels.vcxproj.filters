@@ -36,10 +36,16 @@
     <ClCompile Include="TextTransformation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TextTransformationDecorator.cpp">
+    <ClCompile Include="TextTransformationDecoratorBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LeftTrimTransformation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextTransformationDecoratorSharedObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextTransformationDecoratorMovedObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,13 +77,19 @@
     <ClInclude Include="TextTransformation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TextTransformationDecorator.h">
+    <ClInclude Include="TextTransformationDecoratorMovedObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RichLabelTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LeftTrimTransformation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextTransformationDecoratorSharedObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextTransformationDecoratorBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
