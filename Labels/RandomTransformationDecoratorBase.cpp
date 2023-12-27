@@ -1,6 +1,7 @@
 #include "RandomTransformationDecoratorBase.h"
 
-void RandomTransformationDecoratorBase::initializeTransformations
+template<typename RandomFunctionClassType, typename RandomFunctionType>
+void RandomTransformationDecoratorBase<RandomFunctionClassType, RandomFunctionType>::initializeTransformations
 (std::vector<std::unique_ptr<TextTransformation>>& transformations)
 {
 	for (int i = 0; i < transformations.size(); i++)
@@ -9,25 +10,28 @@ void RandomTransformationDecoratorBase::initializeTransformations
 	}
 }
 
-RandomTransformationDecoratorBase::RandomTransformationDecoratorBase
+template<typename RandomFunctionClassType, typename RandomFunctionType>
+RandomTransformationDecoratorBase<RandomFunctionClassType, RandomFunctionType>::RandomTransformationDecoratorBase
 (std::shared_ptr<Label> label,
 	std::vector<std::unique_ptr<TextTransformation>>& textTranformations,
-	int(*randomFunction)(int, int))
+	RandomFunctionType randomFunction)
 	: LabelDecoratorBase(label), randomFunction(randomFunction)
 {
 	initializeTransformations(textTranformations);
 }
 
-RandomTransformationDecoratorBase::RandomTransformationDecoratorBase
+template<typename RandomFunctionClassType, typename RandomFunctionType>
+RandomTransformationDecoratorBase<RandomFunctionClassType, RandomFunctionType>::RandomTransformationDecoratorBase
 (std::unique_ptr<Label> label,
 	std::vector<std::unique_ptr<TextTransformation>>& textTranformations,
-	int(*randomFunction)(int, int))
+	RandomFunctionType randomFunction)
 	: LabelDecoratorBase(std::move(label)), randomFunction(randomFunction)
 {
 	initializeTransformations(textTranformations);
 }
 
-std::string RandomTransformationDecoratorBase::getText() const
+template<typename RandomFunctionClassType, typename RandomFunctionType>
+std::string RandomTransformationDecoratorBase<RandomFunctionClassType, RandomFunctionType>::getText() const
 {
 	// TODO:: Random Function should be inclusive
 	int index = randomFunction(0, this->transformations.size() - 1);

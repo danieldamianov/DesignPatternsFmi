@@ -3,6 +3,7 @@
 #include "TextTransformation.h"
 #include "vector"
 
+template <typename RandomFunctionClassType ,typename RandomFunctionType>
 class RandomTransformationDecoratorBase : public LabelDecoratorBase
 {
 private:
@@ -15,11 +16,11 @@ private:
 protected:
 	RandomTransformationDecoratorBase(std::shared_ptr<Label> label,
 		std::vector<std::unique_ptr<TextTransformation>>& textTranformations,
-		int (*randomFunction)(int, int));
+		RandomFunctionType randomFunction);
 
 	RandomTransformationDecoratorBase(std::unique_ptr<Label> label,
 		std::vector<std::unique_ptr<TextTransformation>>& textTranformations,
-		int (*randomFunction)(int, int));
+		RandomFunctionType randomFunction);
 
 	virtual std::string getText() const override;
 };

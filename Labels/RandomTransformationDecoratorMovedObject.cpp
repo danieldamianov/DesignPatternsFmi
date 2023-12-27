@@ -1,8 +1,10 @@
 #include "RandomTransformationDecoratorMovedObject.h"
 
-RandomTransformationDecoratorMovedObject::RandomTransformationDecoratorMovedObject
+template <typename RandomFunctionClassType, typename RandomFunctionType>
+RandomTransformationDecoratorMovedObject<RandomFunctionClassType, RandomFunctionType>
+::RandomTransformationDecoratorMovedObject//<RandomFunctionClassType, RandomFunctionType>
 (std::unique_ptr<Label> label,
 	std::vector<std::unique_ptr<TextTransformation>>& textTranformations,
-	int(*randomFunction)(int, int))
-	: RandomTransformationDecoratorBase(std::move(label), textTranformations, randomFunction)
+	RandomFunctionType randomFunction)
+	: RandomTransformationDecoratorBase<RandomFunctionClassType, RandomFunctionType>(std::move(label), textTranformations, randomFunction)
 { }
