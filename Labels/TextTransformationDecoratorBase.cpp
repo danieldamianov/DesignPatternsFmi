@@ -1,7 +1,7 @@
 #include "TextTransformationDecoratorBase.h"
 
 TextTransformationDecoratorBase::TextTransformationDecoratorBase
-	(std::shared_ptr<Label> label, std::unique_ptr<TextTransformation> textTransformation)
+(std::shared_ptr<Label> label, std::unique_ptr<TextTransformation> textTransformation)
 	: LabelDecoratorBase(label), textTransformation(std::move(textTransformation))
 {
 }
@@ -13,10 +13,17 @@ TextTransformationDecoratorBase::TextTransformationDecoratorBase
 
 std::string TextTransformationDecoratorBase::getText() const
 {
-	std::string str = this->sharedSubject != nullptr ? 
-		this->sharedSubject->getText() : 
+	std::string str = this->sharedSubject != nullptr ?
+		this->sharedSubject->getText() :
 		this->movedSubject->getText();
 
 	str = this->textTransformation->transform(str);
 	return str;
+}
+
+std::vector<const std::type_info&> TextTransformationDecoratorBase::getTransformationTypes()
+{
+	std::vector<std::type_info> infos;
+
+	infos.push_back(typeid(this->textTransformation));
 }

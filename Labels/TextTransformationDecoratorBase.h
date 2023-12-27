@@ -13,7 +13,11 @@ protected:
 	TextTransformationDecoratorBase(std::unique_ptr<Label> label,
 		std::unique_ptr<TextTransformation> textTransformation);
 
+public:
+
 	virtual std::string getText() const override;
+	
+	virtual std::vector<const std::type_info&> getTransformationTypes() override;
 
 	//// DEBUG PURPOSES
 	//~TextTransformationDecoratorBase()

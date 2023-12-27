@@ -6,6 +6,7 @@
 #include "TextTransformationDecoratorMovedObject.h"
 #include "TextTransformationDecoratorSharedObject.h"
 #include "RandomTransformationDecoratorSharedObject.hpp"
+#include "RandomTransformationDecoratorMovedObject.hpp"
 #include "CapitalizeTransformation.h"
 #include "RightTrimTransformation.h"
 #include "LeftTrimTransformation.h"
@@ -34,7 +35,7 @@ int main()
 	// TODO::MAKE SMARTPOINTER!
 	// todo:: work in github repo
 	std::shared_ptr<Label> richLabel = std::make_shared<RichLabel>
-		(Color::Blue, Font::BookmanOldStyle, "test         ");
+		(Color::Blue, Font::BookmanOldStyle, "        test         ");
 
 	std::weak_ptr<IRandomFunctionProvider> provider = RandomNumberProvider::getInstance();
 
@@ -46,18 +47,25 @@ int main()
 	v.push_back(std::move(capitalizeTransformation));
 	v.push_back(std::move(rightTrimTransformation));
 
-	Label* obj = new RandomTransformationDecoratorSharedObject
-	(richLabel, v, provider);
+	std::unique_ptr<Label> decorator = std::make_unique<TextTransformationDecoratorSharedObject>
+		(richLabel, std::move(leftTrimTransformation));
+	
+	decorator = std::make_unique<RandomTransformationDecoratorMovedObject>
+		(std::move(decorator), v, provider);
 
-	std::cout << obj->getText() << "end" << std::endl;
-	std::cout << obj->getText() << "end" << std::endl;
-	std::cout << obj->getText() << "end" << std::endl;
-	std::cout << obj->getText() << "end" << std::endl;
-	std::cout << obj->getText() << "end" << std::endl;
-	std::cout << obj->getText() << "end" << std::endl;
-	std::cout << obj->getText() << "end" << std::endl;
-	std::cout << obj->getText() << "end" << std::endl;
-	std::cout << obj->getText() << "end" << std::endl;
+	std::cout << decorator->getText() << "end" << std::endl;
+	std::cout << decorator->getText() << "end" << std::endl;
+	std::cout << decorator->getText() << "end" << std::endl;
+	std::cout << decorator->getText() << "end" << std::endl;
+	std::cout << decorator->getText() << "end" << std::endl;
+	std::cout << decorator->getText() << "end" << std::endl;
+	std::cout << decorator->getText() << "end" << std::endl;
+	std::cout << decorator->getText() << "end" << std::endl;
+	std::cout << decorator->getText() << "end" << std::endl;
+
+	Label* a = decorator.release();
+	LabelDecoratorBase* derivedPtr = dynamic_cast<LabelDecoratorBase*>(a);
+	auto b = derivedPtr->getTransformationTypes();
 	/*
 	if (true)
 	{
