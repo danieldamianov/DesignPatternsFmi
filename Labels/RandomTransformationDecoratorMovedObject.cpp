@@ -1,3 +1,4 @@
+//#include "RandomTransformationDecoratorMovedObject.hpp"
 //#include "RandomTransformationDecoratorMovedObject.h"
 //
 //template <typename RandomFunctionClassType, typename RandomFunctionType>
@@ -8,3 +9,5 @@
 //	RandomFunctionType randomFunction)
 //	: RandomTransformationDecoratorBase<RandomFunctionClassType, RandomFunctionType>(std::move(label), textTranformations, randomFunction)
 //{ }
+
+

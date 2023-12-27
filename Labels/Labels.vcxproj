@@ -149,6 +149,7 @@
     <ClCompile Include="RandomTransformationDecoratorBase.cpp" />
     <ClCompile Include="RandomTransformationDecoratorSharedObject.cpp" />
     <ClCompile Include="RichLabel.cpp" />
+    <ClCompile Include="RightTrimTransformation.cpp" />
     <ClCompile Include="SimpleLabel.cpp" />
     <ClCompile Include="TextTransformation.cpp" />
     <ClCompile Include="TextTransformationDecoratorBase.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="doctest.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="IRandomFunctionProvider.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="LabelDecoratorBase.h" />
     <ClInclude Include="LeftTrimTransformation.h" />
@@ -169,6 +171,7 @@
     <ClInclude Include="RandomTransformationDecoratorSharedObject.hpp" />
     <ClInclude Include="RichLabel.h" />
     <ClInclude Include="RichLabelTests.hpp" />
+    <ClInclude Include="RightTrimTransformation.h" />
     <ClInclude Include="SimpleLabel.h" />
     <ClInclude Include="TextTransformation.h" />
     <ClInclude Include="TextTransformationDecoratorBase.h" />

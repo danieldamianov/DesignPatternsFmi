@@ -1,17 +1,19 @@
 #include "RandomNumberProvider.h"
 
-std::unique_ptr<RandomNumberProvider> RandomNumberProvider::instance = nullptr;
+std::shared_ptr<RandomNumberProvider> RandomNumberProvider::instance = nullptr;
 
 RandomNumberProvider::RandomNumberProvider() : rng(dev()) { }
 
-RandomNumberProvider& RandomNumberProvider::getInstance()
+std::weak_ptr<RandomNumberProvider> RandomNumberProvider::getInstance()
 {
     if (instance == nullptr)
     {
-        instance = std::make_unique<RandomNumberProvider>();
+        // a trick to create shared pointer of a class with private constructor
+        struct make_shared_enabler : public RandomNumberProvider {};
+        instance = std::make_shared<make_shared_enabler>();
     }
 
-    return *instance;
+    return std::weak_ptr<RandomNumberProvider>(instance);
 }
 
 int RandomNumberProvider::getRandomNumberInRange(int minValue, int limit)

@@ -1,21 +1,21 @@
 #pragma once
 #include "memory"
 #include <random>
+#include "IRandomFunctionProvider.h"
 
-class RandomNumberProvider
+class RandomNumberProvider : public IRandomFunctionProvider
 {
-public:
-	// TODO:: CHANGE
-//private:
-	static std::unique_ptr<RandomNumberProvider> instance;
+//public:
+	// TODO:: See if it gives compilation error
+private:
+	static std::shared_ptr<RandomNumberProvider> instance;
 
 	std::random_device dev;
 	std::mt19937 rng;
 
 	RandomNumberProvider();
 public:
-	static RandomNumberProvider& getInstance();
+	static std::weak_ptr<RandomNumberProvider> getInstance();
 
-	int getRandomNumberInRange(int minValue, int limit);
+	virtual int getRandomNumberInRange(int minValue, int limit) override;
 };
-

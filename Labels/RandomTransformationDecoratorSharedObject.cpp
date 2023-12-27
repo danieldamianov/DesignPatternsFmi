@@ -1,3 +1,4 @@
+//#include "RandomTransformationDecoratorSharedObject.hpp"
 //#include "RandomTransformationDecoratorSharedObject.h"
 //
 //template<typename RandomFunctionClassType, typename RandomFunctionType>
@@ -8,3 +9,4 @@
 //	RandomFunctionType randomFunction)
 //	: RandomTransformationDecoratorBase<RandomFunctionClassType, RandomFunctionType>(label, textTransformations, randomFunction)
 //{ }
+
