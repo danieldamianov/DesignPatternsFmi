@@ -104,13 +104,13 @@
     <ClInclude Include="TextTransformationDecoratorBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RandomTransformationDecoratorBase.h">
+    <ClInclude Include="RandomTransformationDecoratorBase.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RandomTransformationDecoratorSharedObject.h">
+    <ClInclude Include="RandomTransformationDecoratorSharedObject.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RandomTransformationDecoratorMovedObject.h">
+    <ClInclude Include="RandomTransformationDecoratorMovedObject.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RandomNumberProvider.h">

@@ -164,9 +164,9 @@
     <ClInclude Include="LabelDecoratorBase.h" />
     <ClInclude Include="LeftTrimTransformation.h" />
     <ClInclude Include="RandomNumberProvider.h" />
-    <ClInclude Include="RandomTransformationDecoratorMovedObject.h" />
-    <ClInclude Include="RandomTransformationDecoratorBase.h" />
-    <ClInclude Include="RandomTransformationDecoratorSharedObject.h" />
+    <ClInclude Include="RandomTransformationDecoratorMovedObject.hpp" />
+    <ClInclude Include="RandomTransformationDecoratorBase.hpp" />
+    <ClInclude Include="RandomTransformationDecoratorSharedObject.hpp" />
     <ClInclude Include="RichLabel.h" />
     <ClInclude Include="RichLabelTests.hpp" />
     <ClInclude Include="SimpleLabel.h" />

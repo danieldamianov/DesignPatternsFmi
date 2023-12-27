@@ -5,7 +5,7 @@
 #include "TextTransformationDecoratorBase.h"
 #include "TextTransformationDecoratorMovedObject.h"
 #include "TextTransformationDecoratorSharedObject.h"
-#include "RandomTransformationDecoratorSharedObject.h"
+#include "RandomTransformationDecoratorSharedObject.hpp"
 #include "CapitalizeTransformation.h"
 #include "LeftTrimTransformation.h"
 #include "RichLabel.h"
@@ -23,7 +23,6 @@
 
 int main()
 {
-
 	std::unique_ptr<TextTransformation> capitalizeTransformation
 		= std::make_unique<CapitalizeTransformation>();
 	std::unique_ptr<TextTransformation> leftTrimTransformation
@@ -36,7 +35,8 @@ int main()
 
 	RandomNumberProvider& provider = RandomNumberProvider::getInstance();
 	int (RandomNumberProvider::*randomFunctionPointer)(int, int) = &RandomNumberProvider::getRandomNumberInRange;
-
+	int a = randomFunctionPointer(4, 5);
+	int a = (provider.*randomFunctionPointer)(4, 5);
 	//std::vector<std::unique_ptr<TextTransformation>>* v = new std::vector<std::unique_ptr<TextTransformation>>();
 	std::vector<std::unique_ptr<TextTransformation>> v;
 	v.push_back(std::move(capitalizeTransformation));
