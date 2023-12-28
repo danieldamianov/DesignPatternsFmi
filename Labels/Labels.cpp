@@ -23,6 +23,8 @@
 #include "RichLabelTests.hpp"
 */
 
+// TODO:: CHECK THE ENTIRE PROGRAM FOR VALID PARAMATERS WHICH ARE POINTERS! - THEY SHOULDN'T be NULLPTR!
+
 int main()
 {
 	std::unique_ptr<TextTransformation> capitalizeTransformation
@@ -63,9 +65,9 @@ int main()
 	std::cout << decorator->getText() << "end" << std::endl;
 	std::cout << decorator->getText() << "end" << std::endl;
 
-	Label* a = decorator.release();
-	LabelDecoratorBase* derivedPtr = dynamic_cast<LabelDecoratorBase*>(a);
-	auto b = derivedPtr->getTransformationTypes();
+	//Label* a = decorator.release();
+	//LabelDecoratorBase* derivedPtr = dynamic_cast<LabelDecoratorBase*>(a);
+	//auto b = derivedPtr->getTransformationTypes();
 	/*
 	if (true)
 	{

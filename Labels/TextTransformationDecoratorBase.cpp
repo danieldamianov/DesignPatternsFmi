@@ -21,9 +21,10 @@ std::string TextTransformationDecoratorBase::getText() const
 	return str;
 }
 
-std::vector<const std::type_info&> TextTransformationDecoratorBase::getTransformationTypes()
+std::vector<const type_info*> TextTransformationDecoratorBase::getTransformationTypes()
 {
-	std::vector<std::type_info> infos;
+	std::vector<const type_info*> infos;
 
-	infos.push_back(typeid(this->textTransformation));
+	infos.push_back(&typeid(this->textTransformation));
+	return infos;
 }

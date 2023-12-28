@@ -16,12 +16,14 @@ public:
 
 	virtual std::string getText() const override = 0;
 
-	virtual std::vector<const std::type_info&> getTransformationTypes() = 0;
+	virtual std::vector<const type_info*> getTransformationTypes() = 0;
 
-	static std::unique_ptr<Label> removeDecoratorFrom
+	static std::shared_ptr<Label> removeDecoratorFrom
 		(std::shared_ptr<Label> label,
-			std::type_info decoratorType,
-			std::vector<const std::type_info&> decoratorTransformations);
+			const type_info* decoratorType,
+			std::vector<const type_info*> decoratorTransformations);
+
+	virtual bool equals(const std::unique_ptr<LabelDecoratorBase> other) = 0;
 	//// DEBUG PURPOSES
 	//~LabelDecoratorBase()
 	//{

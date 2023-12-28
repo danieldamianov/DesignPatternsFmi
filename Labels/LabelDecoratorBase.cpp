@@ -12,10 +12,21 @@ LabelDecoratorBase::LabelDecoratorBase(std::unique_ptr<Label> label)
 	sharedSubject = nullptr;
 }
 
-std::unique_ptr<Label> LabelDecoratorBase::removeDecoratorFrom
+std::shared_ptr<Label> LabelDecoratorBase::removeDecoratorFrom
 	(std::shared_ptr<Label> label,
-		std::type_info decoratorType,
-		std::vector<const std::type_info&> decoratorTransformations)
+		const type_info* decoratorType,
+		std::vector<const type_info*> decoratorTransformations)
 {
-	return std::unique_ptr<Label>();
+    if (label == nullptr) {
+        return nullptr;
+    }
+    else if (LabelDecoratorBase.class.isAssignableFrom(label)) {
+        // label refers to a decorator. Proceed to remove.
+        LabelDecoratorBase ldb = (LabelDecoratorBase)label;
+        return ldb.removeDecorator(decoratorType);
+    }
+    else {
+        return label;
+    }
+
 }
