@@ -19,6 +19,8 @@ public:
 	
 	virtual std::vector<const type_info*> getTransformationTypes() override;
 
+	virtual bool equals(LabelDecoratorBase& other) override;
+
 	//// DEBUG PURPOSES
 	//~TextTransformationDecoratorBase()
 	//{

@@ -6,6 +6,10 @@
 
 class LabelDecoratorBase : public Label
 {
+private:
+	static std::unique_ptr<Label> removeDecoratorFromRecursive
+	(std::unique_ptr<LabelDecoratorBase> label,
+		std::unique_ptr<LabelDecoratorBase> decoratorToRemove);
 protected: 
 	std::shared_ptr<Label> sharedSubject;
 	std::unique_ptr<Label> movedSubject;
@@ -18,12 +22,14 @@ public:
 
 	virtual std::vector<const type_info*> getTransformationTypes() = 0;
 
-	static std::shared_ptr<Label> removeDecoratorFrom
-		(std::shared_ptr<Label> label,
-			const type_info* decoratorType,
-			std::vector<const type_info*> decoratorTransformations);
+	virtual bool equals(LabelDecoratorBase& other) = 0;
 
-	virtual bool equals(const std::unique_ptr<LabelDecoratorBase> other) = 0;
+	static std::unique_ptr<Label> removeDecoratorFrom
+	(std::unique_ptr<Label> label,
+		std::unique_ptr<LabelDecoratorBase> decoratorToRemove);
+
+	// TODO:: THink carefully about the sharedPointers!
+
 	//// DEBUG PURPOSES
 	//~LabelDecoratorBase()
 	//{

@@ -26,7 +26,7 @@ protected:
 	
 	virtual std::vector<const type_info*> getTransformationTypes() override;
 
-	virtual bool equals(const std::unique_ptr<LabelDecoratorBase> other) override;
+	virtual bool equals(LabelDecoratorBase& other) override;
 };
 
 void RandomTransformationDecoratorBase::initializeTransformations
@@ -84,22 +84,23 @@ std::vector<const type_info*> RandomTransformationDecoratorBase::getTransformati
 // TODO:: FIX
 bool RandomTransformationDecoratorBase::equals(LabelDecoratorBase& other)
 {
-	if (typeid(this) != typeid(other))
+	if (typeid(*this) != typeid(other))
 	{
 		return false;
 	}
 
-	std::unique_ptr<RandomTransformationDecoratorBase> newPointer
-	(static_cast<RandomTransformationDecoratorBase*>(other));
+	RandomTransformationDecoratorBase& newPointer = 
+	(dynamic_cast<RandomTransformationDecoratorBase&>(other));
 
-	if (newPointer->transformations.size() != this->transformations.size())
+
+	if (newPointer.transformations.size() != this->transformations.size())
 	{
-		return falseasd asdasd asdasd;
+		return false;
 	}
 
 	for (int i = 0; i < this->transformations.size(); i++)
 	{
-		if (this->transformations[i]->equals(*(newPointer->transformations[i])) == false)
+		if (this->transformations[i]->equals(*(newPointer.transformations[i])) == false)
 		{
 			return false;
 		}

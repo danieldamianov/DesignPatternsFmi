@@ -28,3 +28,21 @@ std::vector<const type_info*> TextTransformationDecoratorBase::getTransformation
 	infos.push_back(&typeid(this->textTransformation));
 	return infos;
 }
+
+bool TextTransformationDecoratorBase::equals(LabelDecoratorBase& other)
+{
+	if (typeid(*this) != typeid(other))
+	{
+		return false;
+	}
+
+	TextTransformationDecoratorBase& newPointer =
+		(dynamic_cast<TextTransformationDecoratorBase&>(other));
+
+	if (newPointer.textTransformation->equals(*(newPointer.textTransformation)) == false)
+	{
+		return false;
+	}
+
+	return true;
+}
