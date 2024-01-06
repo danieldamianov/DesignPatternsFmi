@@ -41,8 +41,6 @@ int main()
 	std::unique_ptr<TextTransformation> rightTrimTransformation2
 		= std::make_unique<RightTrimTransformation>();
 
-	// TODO::MAKE SMARTPOINTER!
-	// todo:: work in github repo
 	//std::shared_ptr<Label> richLabel = std::make_shared<RichLabel>
 	//	(Color::Blue, Font::BookmanOldStyle, "        test         ");
 
@@ -87,6 +85,7 @@ int main()
 	std::cout << decorator->getText() << "end" << std::endl;
 	std::cout << decorator->getText() << "end" << std::endl;
 
+	
 	decorator = LabelDecoratorBase::removeDecoratorFrom
 	(
 		std::move(decorator), std::make_unique<TextTransformationDecoratorMovedObject>

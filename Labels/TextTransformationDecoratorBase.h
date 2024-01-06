@@ -21,10 +21,10 @@ public:
 
 	virtual bool equals(LabelDecoratorBase& other) override;
 
-	//// DEBUG PURPOSES
-	//~TextTransformationDecoratorBase()
-	//{
-	//	int a = 5;
-	//}
-	//// DEBUG PURPOSES
+	// DEBUG PURPOSES
+	~TextTransformationDecoratorBase()
+	{
+		int a = 5;
+	}
+	// DEBUG PURPOSES
 };

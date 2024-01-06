@@ -30,12 +30,12 @@ public:
 
 	// TODO:: THink carefully about the sharedPointers!
 
-	//// DEBUG PURPOSES
-	//~LabelDecoratorBase()
-	//{
-	//	int a = 5;
-	//}
-	//// DEBUG PURPOSES
+	// DEBUG PURPOSES
+	~LabelDecoratorBase()
+	{
+		int a = 5;
+	}
+	// DEBUG PURPOSES
 };
 
 
