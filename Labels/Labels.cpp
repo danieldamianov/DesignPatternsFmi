@@ -147,7 +147,11 @@ int main()
 	std::cout << decorator2->getText() << std::endl;
 	std::cout << decorator2->getText() << std::endl;
 
-	
+	std::unique_ptr<Label> richLabelHelperTextTester
+		= std::make_unique<RichLabel>(Color::Blue, Font::Consolas, "text");
+
+	richLabelHelperTextTester->setHelperText("helper sample");
+	std::cout << richLabelHelperTextTester->getHelperText() << std::endl;
 
 	//std::vector<std::unique_ptr<TextTransformation>> transformations2;
 	//

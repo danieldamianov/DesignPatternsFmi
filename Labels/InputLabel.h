@@ -2,6 +2,7 @@
 #include "Label.h"
 #include "RichLabel.h"
 #include <istream>
+#include <string>
 
 class InputLabel : public Label
 {
@@ -18,5 +19,7 @@ public:
 	InputLabel(Color color, Font font, std::istream& stream);
 
 	virtual std::string getText() const override;
+	virtual std::string getHelperText() override;
+	virtual void setHelperText(std::string text) override;
 };
 

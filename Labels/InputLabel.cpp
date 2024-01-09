@@ -6,6 +6,17 @@ InputLabel::InputLabel(Color color, Font font, std::istream& stream)
     : label(color, font, ""), requestsLeft(0), stream(stream)
 { }
 
+std::string InputLabel::getHelperText()
+{
+    // TODO:: Implement the bridge pattern here!
+    return std::string();
+}
+
+void InputLabel::setHelperText(std::string text)
+{
+    // TODO:: Implement the bridge pattern here!
+}
+
 std::string InputLabel::getText() const
 {
     if (requestsLeft == 0)

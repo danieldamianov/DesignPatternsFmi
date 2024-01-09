@@ -28,6 +28,9 @@ public:
 	(std::unique_ptr<Label> label,
 		std::unique_ptr<LabelDecoratorBase> decoratorToRemove);
 
+	virtual std::string getHelperText() override;
+	virtual void setHelperText(std::string text) override;
+
 	// TODO:: THink carefully about the sharedPointers!
 
 	// DEBUG PURPOSES

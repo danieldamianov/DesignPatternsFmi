@@ -60,3 +60,14 @@ std::unique_ptr<Label> LabelDecoratorBase::removeDecoratorFrom(std::unique_ptr<L
 		return std::move(label);
 	}
 }
+
+std::string LabelDecoratorBase::getHelperText()
+{
+    // TODO:: Implement the bridge pattern here!
+    return std::string();
+}
+
+void LabelDecoratorBase::setHelperText(std::string text)
+{
+    // TODO:: Implement the bridge pattern here!
+}
