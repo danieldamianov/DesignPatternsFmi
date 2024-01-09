@@ -7,10 +7,12 @@
 #include "TextTransformationDecoratorSharedObject.h"
 #include "RandomTransformationDecoratorSharedObject.hpp"
 #include "RandomTransformationDecoratorMovedObject.hpp"
+#include "CompositeTransformation.h"
 #include "CapitalizeTransformation.h"
 #include "RightTrimTransformation.h"
 #include "LeftTrimTransformation.h"
 #include "RichLabel.h"
+#include "InputLabel.h"
 #include <random>
 #include <functional>
 #include <random>
@@ -41,21 +43,11 @@ int main()
 	std::unique_ptr<TextTransformation> rightTrimTransformation2
 		= std::make_unique<RightTrimTransformation>();
 
-	//std::shared_ptr<Label> richLabel = std::make_shared<RichLabel>
-	//	(Color::Blue, Font::BookmanOldStyle, "        test         ");
-
-
-	// TODO:: SEE WHAT HAPPENS IF THE RICHLABEL IS SHARED POINTER AND THE REMOVE DECPRATOR IS CALLED!!!
-
 	std::unique_ptr<Label> richLabel = std::make_unique<RichLabel>
 		(Color::Blue, Font::BookmanOldStyle, "        test         ");
 
 	std::weak_ptr<IRandomFunctionProvider> provider = RandomNumberProvider::getInstance();
 
-	//int (RandomNumberProvider::*randomFunctionPointer)(int, int) = &RandomNumberProvider::getRandomNumberInRange;
-	//int a = randomFunctionPointer(4, 5);
-	//int a = (provider.*randomFunctionPointer)(4, 5);
-	//std::vector<std::unique_ptr<TextTransformation>>* v = new std::vector<std::unique_ptr<TextTransformation>>();
 	std::vector<std::unique_ptr<TextTransformation>> v;
 	v.push_back(std::move(capitalizeTransformation));
 	v.push_back(std::move(rightTrimTransformation));
@@ -70,11 +62,6 @@ int main()
 	decorator = std::make_unique<RandomTransformationDecoratorMovedObject>
 		(std::move(decorator), v, provider);
 
-	//LabelDecoratorBase* dec = new RandomTransformationDecoratorMovedObject(nullptr, v2, provider);
-	//LabelDecoratorBase& decoratorPointer = &(*decorator);
-	
-	//std::cout << dec->equals(dynamic_cast<LabelDecoratorBase&>(*(decorator.release())));
-
 	std::cout << decorator->getText() << "end" << std::endl;
 	std::cout << decorator->getText() << "end" << std::endl;
 	std::cout << decorator->getText() << "end" << std::endl;
@@ -85,7 +72,6 @@ int main()
 	std::cout << decorator->getText() << "end" << std::endl;
 	std::cout << decorator->getText() << "end" << std::endl;
 
-	
 	decorator = LabelDecoratorBase::removeDecoratorFrom
 	(
 		std::move(decorator), std::make_unique<TextTransformationDecoratorMovedObject>
@@ -105,12 +91,80 @@ int main()
 	std::cout << decorator->getText() << "end" << std::endl;
 	std::cout << decorator->getText() << "end" << std::endl;
 
-
-	//Label* a = decorator.release();
-	//LabelDecoratorBase* derivedPtr = dynamic_cast<LabelDecoratorBase*>(a);
-	//auto b = derivedPtr->getTransformationTypes();
 	/*
-	if (true)
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	DIVISIONDIVISIONDIVISIONDIVISIONDIVISION
+	*/
+	std::unique_ptr<Label> decorator2 = std::make_unique<InputLabel>
+		(Color::Gray, Font::Baskerville,std::cin);
+
+	std::vector<std::unique_ptr<TextTransformation>> transformations;
+
+	transformations.push_back(std::make_unique<LeftTrimTransformation>());
+	transformations.push_back(std::make_unique<CapitalizeTransformation>());
+	transformations.push_back(std::make_unique<RightTrimTransformation>());
+
+	decorator2 = std::make_unique<TextTransformationDecoratorMovedObject>(
+		std::move(decorator2),
+		std::make_unique<CompositeTransformation>(transformations));
+
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+	std::cout << decorator2->getText() << std::endl;
+
+	
+
+	//std::vector<std::unique_ptr<TextTransformation>> transformations2;
+	//
+	//transformations2.push_back(std::make_unique<LeftTrimTransformation>());
+	//transformations2.push_back(std::make_unique<CapitalizeTransformation>());
+	//transformations2.push_back(std::make_unique<RightTrimTransformation>());
+	//
+	//decorator2 = LabelDecoratorBase::removeDecoratorFrom(std::move(decorator2),
+	//	std::make_unique<TextTransformationDecoratorMovedObject>(nullptr,
+	//		std::make_unique<CompositeTransformation>(transformations2))
+	//);
+	//
+	//std::cout << decorator2->getText() << "<-endOfText" << std::endl;
+
+
+
+	/*if (true)
 	{
 		std::unique_ptr<Label> decorator = std::make_unique<TextTransformationDecoratorSharedObject>
 			(richLabel, std::move(leftTrimTransformation));

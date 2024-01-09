@@ -6,11 +6,14 @@ class SimpleLabel : public Label
 private:
 	std::string text;
 
+	//Helper
+
 public:
 	SimpleLabel(std::string text);
 
 	virtual std::string getText() const override;
 
+	
 	//// DEBUG PURPOSES
 	//~SimpleLabel()
 	//{
