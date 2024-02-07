@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChecksumsLibrary.ProgressIndicator;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChecksumsLibrary
 {
-    public interface IChecksumClaculator
+    public interface IChecksumClaculator : ProcessedFileObservable
     {
         public String calculate(Stream inputStream);
     }

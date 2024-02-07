@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChecksumsLibrary.ProgressIndicator;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ChecksumsLibrary
 {
-    class SHA256_ChecksumCalculator : IChecksumClaculator
+    class SHA256_ChecksumCalculator : ChecksumCalculator
     {
-        public string calculate(Stream inputStream)
+        public override string calculate(Stream inputStream)
         {
             using (SHA256 sha256 = SHA256.Create())
             {

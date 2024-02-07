@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Iteration
 {
-    public class HashStreamWriter : AbstractFileSystemVisitor
+    public class HashStreamWriter : AbstractFileSystemVisitor, ProcessedFileObservable, ProcessedFileObserver
     {
         private IChecksumClaculator calculator;
-        private Stream writer;
+        private IList<ProcessedFileObserver> observers;
 
-        public HashStreamWriter(IChecksumClaculator calculator, Stream writer)
+        public HashStreamWriter(IChecksumClaculator calculator, Stream writer) : base(writer)
         {
             this.calculator = calculator;
-            this.writer = writer;
+
+            this.observers = new List<ProcessedFileObserver>();
         }
 
         public void changeCalculator(IChecksumClaculator newCalculator)
@@ -23,27 +24,21 @@ namespace ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Iteration
             this.calculator = newCalculator;
         }
 
+        public void addObserver(ProcessedFileObserver observer)
+        {
+            this.observers.Add(observer);
+        }
+
         public void calculate(Stream inputStream, string fileName)
         {
             byte[] str = Encoding.ASCII
                 .GetBytes(this.calculator.calculate(inputStream) + " : " + fileName + Environment.NewLine);
-            this.writer.Write(str,0,str.Length);
+            this.writer.Write(str, 0, str.Length);
         }
 
         public override void visitDirectory(Directory directory)
         {
-            foreach (var resource in directory.GetFilesAndDirs())
-            {
-                // TODO:: I know it is a bad idea, but do not see it other way!
-                if(resource is File)
-                {
-                    visitFile((File)resource);
-                }
-                else
-                {
-                    visitDirectory((Directory)resource);
-                }
-            }
+            traverseDirectory(directory);
         }
 
         public override void visitFile(File file)
@@ -51,12 +46,26 @@ namespace ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Iteration
             try
             {
                 this.calculate(new FileStream(file.Path, FileMode.Open), file.Path);
+                //notifyObserversForProcessedFile(file.Path);
             }
-            catch (UnauthorizedAccessException ex)
+            catch (UnauthorizedAccessException)
             {
                 this.writer.Write(Encoding.ASCII
                 .GetBytes("Access to file denied!!!" + Environment.NewLine));
             }
+        }
+
+        public void notifyObserversForProcessedFile(string fileName, long bytesProcessed = -1)
+        {
+            foreach (var observer in observers)
+            {
+                observer.handleProcessedFile(fileName, bytesProcessed);
+            }
+        }
+
+        public void handleProcessedFile(string name, long bytesProcessed)
+        {
+            this.notifyObserversForProcessedFile(name, bytesProcessed);
         }
     }
 }

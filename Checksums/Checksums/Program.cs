@@ -1,4 +1,5 @@
 ﻿using ChecksumsLibrary;
+using ChecksumsLibrary.ProgressIndicator;
 using ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation;
 using ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Builder.Factory;
 using ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Iteration;
@@ -32,13 +33,27 @@ namespace Checksums
 
         static void Main(string[] args)
         {
+            ProcessedFileObserver reporter = new ProgressReporter();
+
             //Console.WriteLine(GetShortcutTargetPath(@"D:\FMI\SDP - Shortcut.lnk"));
-            IAbstractFile file1 = new ShortcutNotFollowerAbstractFileFactory().createAbstractFile(@"D:\FMI");
-            IAbstractFile file2 = new ShortcutFollowerAbstractFileFactory().createAbstractFile(@"D:\FMI");
+            IAbstractFile file1 = new ShortcutNotFollowerAbstractFileFactory().createAbstractFile(@"D:\DesignPatternsFmi\ChecksumsTest\MyRootDirectory");
+            IAbstractFile file2 = new ShortcutFollowerAbstractFileFactory().createAbstractFile(@"D:\DesignPatternsFmi\ChecksumsTest\MyRootDirectory");
 
             using (MemoryStream stream = new MemoryStream())
             {
-                file1.accept(new HashStreamWriter(new MD5_ChecksumCalculator(), stream));
+                MD5_ChecksumCalculator calc = new MD5_ChecksumCalculator();
+                
+
+                HashStreamWriter writer =
+                    new HashStreamWriter(calc, stream);
+
+                calc.addObserver(writer);
+
+                writer.addObserver(reporter);
+
+                file1.accept(writer);
+                file1.accept(new ReportWriter(stream));
+
                 Console.WriteLine(Encoding.UTF8.GetString(stream.ToArray()));
             }
 

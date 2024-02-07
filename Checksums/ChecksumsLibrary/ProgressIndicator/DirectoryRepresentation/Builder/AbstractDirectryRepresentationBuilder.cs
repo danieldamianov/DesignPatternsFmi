@@ -21,12 +21,5 @@ namespace ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Builder
         {
             return this.buildedObject;
         }
-
-            /*
-             directory = builder
-            .Add(builder.add(new File))
-            .Add(builder.add(new builder().add(new File)).build())
-            .Build
-            */
     }
 }
