@@ -33,11 +33,11 @@ namespace Checksums
 
         static void Main(string[] args)
         {
-            ProcessedFileObserver reporter = new ProgressReporter();
 
             //Console.WriteLine(GetShortcutTargetPath(@"D:\FMI\SDP - Shortcut.lnk"));
             IAbstractFile file1 = new ShortcutNotFollowerAbstractFileFactory().createAbstractFile(@"D:\DesignPatternsFmi\ChecksumsTest\MyRootDirectory");
             IAbstractFile file2 = new ShortcutFollowerAbstractFileFactory().createAbstractFile(@"D:\DesignPatternsFmi\ChecksumsTest\MyRootDirectory");
+            ProcessedFileObserver reporter = new ProgressReporter(file1);
 
             using (MemoryStream stream = new MemoryStream())
             {
@@ -72,7 +72,7 @@ namespace Checksums
             {
                 IChecksumClaculator checksumClaculator = new MD5_ChecksumCalculator();
 
-                Console.WriteLine(checksumClaculator.calculate(memoryStream));
+                Console.WriteLine(checksumClaculator.calculate(memoryStream, ""));
             }
         }
     }

@@ -12,12 +12,17 @@ namespace ChecksumsLibrary
     {
         private IList<ProcessedFileObserver> observers;
 
+        public ChecksumCalculator()
+        {
+            this.observers = new List<ProcessedFileObserver>();
+        }
+
         public void addObserver(ProcessedFileObserver observer)
         {
             this.observers.Add(observer);
         }
 
-        public abstract string calculate(Stream inputStream);
+        public abstract string calculate(Stream inputStream, string fileName);
 
         public void notifyObserversForProcessedFile(string fileName, long bytesProcessed = -1)
         {

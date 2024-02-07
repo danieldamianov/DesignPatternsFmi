@@ -10,6 +10,6 @@ namespace ChecksumsLibrary
 {
     public interface IChecksumClaculator : ProcessedFileObservable
     {
-        public String calculate(Stream inputStream);
+        public String calculate(Stream inputStream, string fileName);
     }
 }

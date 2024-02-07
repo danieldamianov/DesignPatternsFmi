@@ -32,7 +32,7 @@ namespace ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Iteration
         public void calculate(Stream inputStream, string fileName)
         {
             byte[] str = Encoding.ASCII
-                .GetBytes(this.calculator.calculate(inputStream) + " : " + fileName + Environment.NewLine);
+                .GetBytes(this.calculator.calculate(inputStream, fileName) + " : " + fileName + Environment.NewLine);
             this.writer.Write(str, 0, str.Length);
         }
 
