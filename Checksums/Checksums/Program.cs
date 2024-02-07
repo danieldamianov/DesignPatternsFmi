@@ -1,6 +1,7 @@
 ﻿using ChecksumsLibrary;
 using ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation;
 using ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Builder.Factory;
+using ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Iteration;
 using Shell32;
 using System;
 using System.IO;
@@ -35,7 +36,12 @@ namespace Checksums
             IAbstractFile file1 = new ShortcutNotFollowerAbstractFileFactory().createAbstractFile(@"D:\FMI");
             IAbstractFile file2 = new ShortcutFollowerAbstractFileFactory().createAbstractFile(@"D:\FMI");
 
-            
+            using (MemoryStream stream = new MemoryStream())
+            {
+                file1.accept(new HashStreamWriter(new MD5_ChecksumCalculator(), stream));
+                Console.WriteLine(Encoding.UTF8.GetString(stream.ToArray()));
+            }
+
 
             Console.WriteLine(file1.GetSizeInBytes());
             Console.WriteLine(file2.GetSizeInBytes());

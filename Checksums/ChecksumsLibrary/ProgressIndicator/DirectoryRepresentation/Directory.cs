@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Iteration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,11 @@ namespace ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation
             this.resources.ForEach(r => this.resources.Add(r));
         }
 
+        public override void accept(AbstractFileSystemVisitor visitor)
+        {
+            visitor.visitDirectory(this);
+        }
+
         public void AddResource(IAbstractFile resource)
         {
             this.resources.Add(resource);
@@ -25,6 +31,11 @@ namespace ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation
         public override ulong GetSizeInBytes()
         {
             return (ulong)this.resources.Sum(r => (decimal)r.GetSizeInBytes());
+        }
+
+        public IReadOnlyCollection<IAbstractFile> GetFilesAndDirs()
+        {
+            return this.resources.AsReadOnly();
         }
     }
 }

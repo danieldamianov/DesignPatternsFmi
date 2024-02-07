@@ -21,9 +21,10 @@ namespace ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Builder.Fac
                     .Where(f => System.IO.Directory.Exists(f)))
                 .ToList();
 
-            List<string> shortcutLinkedFiles =
-                files.Where(f => f.EndsWith(".lnk") && System.IO.File.Exists(GetShortcutTargetPath(f))
-            ).ToList();
+            List<string> shortcutLinkedFiles = files
+                .Where(f => f.EndsWith(".lnk") && System.IO.File.Exists(GetShortcutTargetPath(f)))
+                .Select(f => GetShortcutTargetPath(f))
+                .ToList();
 
             files = files.Concat(shortcutLinkedFiles).ToList();
 

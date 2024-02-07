@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation.Iteration;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation
 {
@@ -14,5 +17,6 @@ namespace ChecksumsLibrary.ProgressIndicator.DirectoryRepresentation
         }
 
         public abstract ulong GetSizeInBytes();
+        public abstract void accept(AbstractFileSystemVisitor visitor);
     }
 }
